@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,10 +21,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.MoVie.api.model.DailyBoxOffice;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysql.cj.util.DataTypeUtil;
 
 @Controller
 public class RestApi {
@@ -77,13 +76,19 @@ public class RestApi {
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObject = new JSONObject();
 		Map<String, Object> map = null;
-		List<Map<String, Object>> ob = new ArrayList<>(); 
+		List<DailyBoxOffice> ob = new ArrayList<>(); 
 		
 		//Object ob = null;
 		//dailyBoxOfficeList
 		try {
 			map = new ObjectMapper().readValue(jsonString, Map.class);
-			ob = (List<Map<String, Object>>) map.get("dailyBoxOfficeList");
+			//ob = (List<Map<String, Object>>) map.get("dailyBoxOfficeList");
+			String key = "";
+			for (String menu : map.keySet()) {
+				key = menu;
+			}
+			map = (Map<String, Object>) map.get(key);
+			ob = (List<DailyBoxOffice>)map.get("dailyBoxOfficeList");
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
@@ -91,7 +96,7 @@ public class RestApi {
 		}
 		//List<Map<String, Object>> ob = (List<Map<String, Object>>)map.get("dailyBoxOfficeList");
 		
-		model.addAttribute("result", map);
+		model.addAttribute("result", ob);
 		//return jsonString;
 		return "test/test";
 	}

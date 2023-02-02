@@ -6,7 +6,7 @@ public class BoxOfficeResult {
 
 	private String boxofficeType;
     private String showRange;
-    private List<DailyBoxOfficeList> dailyBoxOfficeList;
+    private List<DailyBoxOffice> dailyBoxOfficeList;
     
     //
 	public String getBoxofficeType() {
@@ -21,10 +21,10 @@ public class BoxOfficeResult {
 	public void setShowRange(String showRange) {
 		this.showRange = showRange;
 	}
-	public List<DailyBoxOfficeList> getDailyBoxOfficeList() {
+	public List<DailyBoxOffice> getDailyBoxOfficeList() {
 		return dailyBoxOfficeList;
 	}
-	public void setDailyBoxOfficeList(List<DailyBoxOfficeList> dailyBoxOfficeList) {
+	public void setDailyBoxOfficeList(List<DailyBoxOffice> dailyBoxOfficeList) {
 		this.dailyBoxOfficeList = dailyBoxOfficeList;
 	}
 }

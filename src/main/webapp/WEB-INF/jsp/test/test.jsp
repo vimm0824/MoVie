@@ -35,7 +35,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="movie" items="${result.dailyBoxOfficeList}" varStatus="status">
+				<c:forEach var="movie" items="${result}" varStatus="status">
 					<tr>
 						<th>${movie.rank}</th>
 						<th>${movie.movieNm}</th>

@@ -1,6 +1,6 @@
 package com.MoVie.api.model;
 
-public class DailyBoxOfficeList {
+public class DailyBoxOffice {
 
 	private String rnum;
 	private String rank;
