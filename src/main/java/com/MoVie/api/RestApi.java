@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -73,8 +74,8 @@ public class RestApi {
 	          System.out.println(e.toString());
 	      }
 		
-		JSONParser parser = new JSONParser();
-		JSONObject jsonObject = new JSONObject();
+		//JSONParser parser = new JSONParser();
+		//JSONObject jsonObject = new JSONObject();
 		Map<String, Object> map = null;
 		List<DailyBoxOffice> ob = new ArrayList<>(); 
 		
@@ -82,19 +83,17 @@ public class RestApi {
 		//dailyBoxOfficeList
 		try {
 			map = new ObjectMapper().readValue(jsonString, Map.class);
-			//ob = (List<Map<String, Object>>) map.get("dailyBoxOfficeList");
-			String key = "";
+			String mapKey = "";
 			for (String menu : map.keySet()) {
-				key = menu;
+				mapKey = menu;
 			}
-			map = (Map<String, Object>) map.get(key);
+			map = (Map<String, Object>) map.get(mapKey);
 			ob = (List<DailyBoxOffice>)map.get("dailyBoxOfficeList");
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		//List<Map<String, Object>> ob = (List<Map<String, Object>>)map.get("dailyBoxOfficeList");
 		
 		model.addAttribute("result", ob);
 		//return jsonString;
