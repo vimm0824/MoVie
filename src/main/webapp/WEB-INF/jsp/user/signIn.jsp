@@ -27,6 +27,19 @@
 			$.ajax({
 				type:"post"
 				, url:"/user/sign_in"
+				, data:{"loginId":loginId,"password":password}
+				
+				, success:function(data) {
+					if (data.code == 1) {
+						alert(data.result);
+						location.href = "/main";
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				, error:function(e) {
+					alert("ajax error: 문의 부탁 드립니다.");
+				}
 			});
 		});
 	});

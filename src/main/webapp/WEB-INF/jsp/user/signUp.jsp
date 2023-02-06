@@ -96,10 +96,10 @@
 				alert("비밀번호 확인이 맞지 않습니다.");
 				return false;
 			}
-			/* if (passwordCheck.test(password) == false) {
+			if (passwordCheck.test(password) == false) {
 				alert("비밀번호는 영문자+숫자+특수기호 조합으로 8~25자리 사용하세요");
 				return false;
-			} */
+			}
 			if (name.length < 1) {
 				alert("이름을 입력하세요.");
 				return false;
@@ -127,8 +127,6 @@
 				}
 			});
 		});
-		
-			
 		
 	});
 </script>
