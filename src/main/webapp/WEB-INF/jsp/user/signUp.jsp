@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <div class="container">
 	<div class="col-12 text-center">
 		<a href="/main" class="domain-logo text-dark">MoVie</a>
@@ -73,7 +72,6 @@
 			});
 		});
 		
-			
 		$('#signUp').on('click', function() {
 			let loginId = $('#loginId').val().trim();
 			let password = $('#password').val().trim();
@@ -83,25 +81,25 @@
 			let nickname = $('#nickname').val().trim();
 			
 			if ($('#idCheckOk').hasClass('d-none')) {
-				alert("아이디를 확인 해주세요.");
+				alert("아이디를 확인해주세요.");
 				return false;
 			}
 			if (password.length < 1) {
-				alert("비밀번호를 입력하세요.");
+				alert("비밀번호를 입력해주세요.");
 				return false;
 			}
 			if (passwordCol.length < 1) {
-				alert("비밀번호 확인을 입력하세요.");
-				return false;
-			}
-			if (passwordCheck.test(password) == false) {
-				alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용하세요.");
+				alert("비밀번호 확인을 입력해주세요.");
 				return false;
 			}
 			if (password != passwordCol) {
-				alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+				alert("비밀번호 확인이 맞지 않습니다.");
 				return false;
 			}
+			/* if (passwordCheck.test(password) == false) {
+				alert("비밀번호는 영문자+숫자+특수기호 조합으로 8~25자리 사용하세요");
+				return false;
+			} */
 			if (name.length < 1) {
 				alert("이름을 입력하세요.");
 				return false;
@@ -112,23 +110,25 @@
 			}
 			
 			$.ajax({
-				type:"POST"
+				type:"post"
 				, url:"/user/sign_up"
-				, data:{"loginId":loginId, "password":password, "name":name, "nickname":nickname}
-				
+				, data:{"loginId":loginId,"password":password,"name":name,"nickname":nickname}
+			
 				, success:function(data) {
 					if (data.code == 1) {
-						alert("회원가입에 성공하셨습니다." + nickname + "님");
+						alert("회원가입을 환영합니다." + nickname + "님");
 						location.href = "/user/sign_in_view";
 					} else {
-						alert(data.errorMessage);
+						alert(errorMessage);
 					}
 				}
 				, error:function(e) {
-					alert("ajax error: 문의 부탁드립니다." + e);
+					alert("ajax error");
 				}
 			});
-			
 		});
+		
+			
+		
 	});
 </script>

@@ -5,11 +5,11 @@
 		<a href="/main" class="domain-logo text-dark">MoVie</a>
 	</div>
 	<div class="d-flex justify-content-center">
-		<input type="text" class="form-control col-6"
+		<input type="text" id="loginId" class="form-control col-6"
 			placeholder="아이디를 입력해주세요.">
 	</div>
 	<div class="mt-3 d-flex justify-content-center">
-		<input type="password" class="form-control col-6"
+		<input type="password" id="password" class="form-control col-6"
 			placeholder="비밀번호를 입력해주세요.">
 	</div>
 	<div class="mt-3 d-flex justify-content-center">
@@ -17,3 +17,18 @@
 		<a href="/user/sign_up_view" type="button" id="signUp" class="btn btn-type2 text-dark">회원가입</a>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function() {
+		$('#signIn').on('click', function() {
+			let loginId = $('#loginId').val().trim();
+			let password = $('#password').val().trim();
+			
+			$.ajax({
+				type:"post"
+				, url:"/user/sign_in"
+			});
+		});
+	});
+	
+</script>
