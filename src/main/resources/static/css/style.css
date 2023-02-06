@@ -1,0 +1,13 @@
+@charset "UTF-8";
+header {height:80px;}
+.contents {min-height:600px;}
+#nav-bar {background-color:#e0e0e0; min-height:600px;}
+.main-view {width:473px;}
+.position-center {margin:0 auto 0;}
+.domain-logo {font-size:150px;}
+.domain-logo:hover {text-decoration: none}
+.my-page-number:hover {text-decoration: none}
+.my-info {height:280px; width:1100px; background-color:#e0e0e0;}
+footer {height:80px;}
+.btn-type1 {background-color:#404040; height:40px; width:100px;}
+.btn-type2 {background-color:#e0e0e0; height:40px; width:100px;}

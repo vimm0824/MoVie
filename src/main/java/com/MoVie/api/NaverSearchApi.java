@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.boot.devtools.restart.server.DefaultSourceDirectoryUrlFilter;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.MoVie.api.model.NaverSearch;
@@ -27,17 +29,9 @@ public class NaverSearchApi {
 			@RequestParam("search") String search,
 			Model model
 			) {
-//		Map<String, Object> result = new HashMap<>();
 		String jsonString = "";
 		String clientId = "iq5JX8jZ3Z7TM_NGsJFU";
 		String clientSecret = "OHbgiB1VGE";
-
-		//String text = URLEncoder.encode(str, "UTF-8");
-//		try {
-//			search = URLEncoder.encode(search, "UTF-8");
-//		} catch (UnsupportedEncodingException e) {
-//			e.printStackTrace();
-//		}
 		
 		URI uri= UriComponentsBuilder.fromUriString("https://openapi.naver.com")
                 .path("/v1/search/movie.json")
@@ -57,13 +51,6 @@ public class NaverSearchApi {
 		
 		jsonString = responseEntity.getBody();
 		
-//		JSONParser parser = new JSONParser();
-//	    try {
-//			JSONObject jsonObject = (JSONObject) parser.parse(jsonString);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-		
 		Map<String, Object> map = null;
 		List<NaverSearch> list = new ArrayList<>();
 		try {
@@ -74,6 +61,9 @@ public class NaverSearchApi {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 		model.addAttribute("result", list);
 		//return jsonString;
 		return "test/searchTest";

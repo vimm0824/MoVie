@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -50,8 +51,6 @@ public class RestApi {
 	          //String date = "20230120";
 
 	          UriComponents uri = UriComponentsBuilder.fromHttpUrl(url +"?key=" + key + "&targetDt=" + date).build();
-	          
-	          //restTemplate.getForEntity(url, null, header);
 	          
 	          //이 한줄의 코드로 API를 호출해 MAP타입으로 전달 받는다.
 	          ResponseEntity<Map> resultMap = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Map.class);
@@ -94,7 +93,7 @@ public class RestApi {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		
+
 		model.addAttribute("result", ob);
 		//return jsonString;
 		return "test/test";
