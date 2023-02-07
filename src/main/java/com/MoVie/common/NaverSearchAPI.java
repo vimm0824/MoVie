@@ -1,19 +1,15 @@
-package com.MoVie.api;
+package com.MoVie.common;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.boot.devtools.restart.server.DefaultSourceDirectoryUrlFilter;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.MoVie.api.model.NaverSearch;
@@ -21,14 +17,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Controller
-public class NaverSearchApi {
+@Service
+public class NaverSearchAPI {
 
-	@GetMapping("/search_api")
-	public String searchApi(
-			@RequestParam("search") String search,
-			Model model
-			) {
+	public List<LinkedHashMap<String, String>> getSearchMovieInfo(String search) {
 		String jsonString = "";
 		String clientId = "iq5JX8jZ3Z7TM_NGsJFU";
 		String clientSecret = "OHbgiB1VGE";
@@ -39,7 +31,7 @@ public class NaverSearchApi {
                 .encode()
                 .build()
                 .toUri();
-         
+		
 		RestTemplate restTemplate = new RestTemplate();
 		
 		RequestEntity<Void> requestEntity = RequestEntity.get(uri)
@@ -52,20 +44,17 @@ public class NaverSearchApi {
 		jsonString = responseEntity.getBody();
 		
 		Map<String, Object> map = null;
-		List<NaverSearch> list = new ArrayList<>();
+		List<LinkedHashMap<String, String>> list = new ArrayList<>();
+		
 		try {
 			map = new ObjectMapper().readValue(jsonString, Map.class);
-			list = (List<NaverSearch>) map.get("items");
+			list = (List<LinkedHashMap<String, String>>) map.get("items");
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		
-		
-		
-		model.addAttribute("result", list);
-		//return jsonString;
-		return "test/searchTest";
+		return list;
 	}
 }

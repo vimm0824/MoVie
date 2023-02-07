@@ -31,10 +31,9 @@
 				
 				, success:function(data) {
 					if (data.code == 1) {
-						alert(data.result);
 						location.href = "/main";
 					} else {
-						alert(data.errorMessage);
+						alert(data.result);
 					}
 				}
 				, error:function(e) {

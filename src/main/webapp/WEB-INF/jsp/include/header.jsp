@@ -9,13 +9,18 @@
 </div>
 
 <div class="m-4 d-flex">
+	<c:if test="${empty userId}">
 	<a href="/user/sign_in_view" class="btn btn-type1 text-white ">로그인</a> 
-	<a href="/user/sign_up_view"class="btn btn-type2 text-dark ">회원가입</a> 
-	<a href="#"class="mr-2 d-none">
+	<a href="/user/sign_up_view"class="btn btn-type2 text-dark ">회원가입</a>
+	</c:if>
+	<c:if test="${not empty userId}">
+	<a href="#"class="mr-2">
 		<img alt="" src="https://cdn.pixabay.com/photo/2021/07/25/08/03/account-6491185_1280.png"
 		width="45" height="45">
 	</a> 
-	<a href="/mypage/mypage_view" class="btn btn-type1 text-white mr-4 d-none">loginId</a>
+	<a href="/mypage/mypage_view" class="btn btn-type1 text-white">${nickname}</a>
+	<a href="/user/sign_out" id="signOutBtn" class="btn btn-type2 text-dark">로그아웃</a>
+	</c:if>
 </div>
 
 <script>
@@ -26,6 +31,10 @@
 			} else {
 				$('#nav-bar').addClass('d-none');
 			}
+		});
+		
+		$('#signOutBtn').on('click', function() {
+			
 		});
 	});
 </script>

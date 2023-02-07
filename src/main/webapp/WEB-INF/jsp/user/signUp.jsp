@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <div class="container">
 	<div class="col-12 text-center">
 		<a href="/main" class="domain-logo text-dark">MoVie</a>
@@ -31,7 +32,7 @@
 			placeholder="닉네임을 입력해주세요.">
 	</div>
 	<div class="mt-4 d-flex justify-content-center">
-		<a href="/user/sign_up_view" type="button" id="signUp" class="btn btn-type1 text-white col-5">회원가입</a>
+		<button type="button" id="signUp" class="btn btn-type1 text-white col-5">회원가입</button>
 	</div>
 </div>
 
@@ -119,7 +120,7 @@
 						alert("회원가입을 환영합니다." + nickname + "님");
 						location.href = "/user/sign_in_view";
 					} else {
-						alert(errorMessage);
+						alert(data.errorMessage);
 					}
 				}
 				, error:function(e) {

@@ -1,5 +1,7 @@
 package com.MoVie.user.model;
 
+import java.util.Date;
+
 public class User {
 
 	private int id;
@@ -8,9 +10,8 @@ public class User {
 	private String name;
 	private String nickname;
 	private String profileUrl;
-	private int createdAt; 
-	private int updatedAt;
-	
+	private Date createdAt; 
+	private Date updatedAt;
 	//
 	public int getId() {
 		return id;
@@ -48,16 +49,16 @@ public class User {
 	public void setProfileUrl(String profileUrl) {
 		this.profileUrl = profileUrl;
 	}
-	public int getCreatedAt() {
+	public Date getCreatedAt() {
 		return createdAt;
 	}
-	public void setCreatedAt(int createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	public int getUpdatedAt() {
+	public Date getUpdatedAt() {
 		return updatedAt;
 	}
-	public void setUpdatedAt(int updatedAt) {
+	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 	

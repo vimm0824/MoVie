@@ -6,8 +6,11 @@ header {height:80px;}
 .position-center {margin:0 auto 0;}
 .domain-logo {font-size:150px;}
 .domain-logo:hover {text-decoration: none}
+.logo {font-size:100px;}
+.logo:hover {text-decoration: none}
 .my-page-number:hover {text-decoration: none}
 .my-info {height:280px; width:1100px; background-color:#e0e0e0;}
+.movie-box {min-height:800px; width:1150px; background-color: #e0e0e0;}
 footer {height:80px;}
 .btn-type1 {background-color:#404040; height:40px; width:100px;}
 .btn-type2 {background-color:#e0e0e0; height:40px; width:100px;}
