@@ -72,4 +72,48 @@ public class BoxOfficeAPI {
 		
         return result;
 	}
+	
+public List<LinkedHashMap<String, Object>> getSearchMovie(String str) {
+		
+		String jsonString = "";
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		HttpHeaders header = new HttpHeaders();
+        HttpEntity<?> entity = new HttpEntity<>(header);
+         
+        String url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json";
+        String key = "0a3d75ef1d272ded4accb0dcb474129a";
+		
+        UriComponents uri = UriComponentsBuilder.fromHttpUrl(url +"?key=" + key + "&movieNm=" + str).build();
+        
+        ResponseEntity<Map> resultMap = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Map.class);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+			jsonString = mapper.writeValueAsString(resultMap.getBody());
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+        
+        Map<String, Object> map = null;
+//		List<DailyBoxOffice> result = new ArrayList<>(); 
+		List<LinkedHashMap<String, Object>> result = new ArrayList<>(); 
+		
+		try {
+			map = new ObjectMapper().readValue(jsonString, Map.class);
+			String mapKey = "";
+			for (String menu : map.keySet()) {
+				mapKey = menu;
+			}
+			map = (Map<String, Object>) map.get(mapKey);
+			result = (List<LinkedHashMap<String, Object>>)map.get("movieList");
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+        return result;
+	}
 }

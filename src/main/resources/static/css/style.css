@@ -11,6 +11,8 @@ header {height:80px;}
 .my-page-number:hover {text-decoration: none}
 .my-info {height:280px; width:1100px; background-color:#e0e0e0;}
 .movie-box {min-height:800px; width:1150px; background-color: #e0e0e0;}
+.my-movie-box {height:450px; width:1100px; background-color: #e0e0e0;}
 footer {height:80px;}
 .btn-type1 {background-color:#404040; height:40px; width:100px;}
 .btn-type2 {background-color:#e0e0e0; height:40px; width:100px;}
+.btn-type3 {background-color: #bebebe; height:40px; width:100px;}

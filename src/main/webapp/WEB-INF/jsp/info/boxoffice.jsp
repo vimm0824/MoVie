@@ -13,7 +13,7 @@
 			<c:forEach var="movie" items="${result}">
 			<div class="card m-2" style="width: 200px;" >
 				<img class="card-img-top" src="${movie.image}"
-					alt="영화 포스터" width="150" height="210">
+					alt="${movie.movieNm}" width="150" height="210">
 				<div class="card-body">
 					<div class="d-flex justify-content-around align-items-center">
 						<h2>${movie.rank}</h2>
@@ -23,7 +23,7 @@
 					</div>
 					<div class="d-flex justify-content-center align-items-end">
 						<a href="#" class="btn btn-type1 text-white">예매하기</a>
-						<a href="#" class="btn btn-type2 text-dark">상세보기</a>
+						<a href="#" class="btn btn-type2 text-dark" data-movie-id="${movie.movieCd}">상세보기</a>
 					</div>
 				</div>
 			</div>

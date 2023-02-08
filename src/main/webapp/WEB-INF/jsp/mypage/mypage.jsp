@@ -3,5 +3,4 @@
 <div id="my-page">
 <!-- 마이페이지 박스  --> 
 	<jsp:include page="../include/mypageBox.jsp"/>
-	
 </div>

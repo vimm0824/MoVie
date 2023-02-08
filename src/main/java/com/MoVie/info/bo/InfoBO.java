@@ -41,8 +41,8 @@ public class InfoBO {
 			
 			List<LinkedHashMap<String, String>> nsAPI = naverSearchAPI.getSearchMovieInfo(movieNm);
 			
+			movieNm = "<b>" + movieNm + "</b>";
 			for (LinkedHashMap<String, String> item : nsAPI) {
-				movieNm = "<b>" + movieNm + "</b>";
 				if (item.get("title").equals(movieNm)) {
 					input.put("image", item.get("image"));
 					break;
