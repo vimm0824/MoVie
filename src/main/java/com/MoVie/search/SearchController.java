@@ -21,12 +21,31 @@ public class SearchController {
 	
 	@GetMapping("/movie_view")
 	public String searchMovie(
-			@RequestParam("title") String title,
+			@RequestParam(value="search", required=false) String search,
 			Model model) {
-		List<Map<String, Object>> result = searchBO.getSearchMovie(title);
+		// 검색어에 아무것도 입력하지 않으면 박스오피스 1위가 나오게 할것
+		
+		if (search == "") {
+			search = "라라랜드";
+		}
+		
+		List<Map<String, Object>> result = searchBO.getSearchMovie(search);
 		
 		model.addAttribute("result", result);
 		model.addAttribute("viewName", "search/searchMovie");
+		return "template/layout";
+	}
+	
+	@GetMapping("/detail_movie_view")
+	public String detailMovie(
+			@RequestParam("movieCd") String movieCd,
+			Model model
+			) {
+		
+		Map<String, Object> result = searchBO.getDetailMovie(movieCd);
+		
+		model.addAttribute("result", result);
+		model.addAttribute("viewName", "search/detailMovie");
 		return "template/layout";
 	}
 }

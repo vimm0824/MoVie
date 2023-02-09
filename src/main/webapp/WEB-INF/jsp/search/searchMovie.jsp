@@ -5,10 +5,9 @@
 	<div class="col-12 text-center">
 		<a href="/main" class="logo text-dark">MoVie</a>
 	</div>
-	<div class="col-12 pt-2 d-flex justify-content-center mb-3">
-		<input type="text" class="form-control col-8" placeholder="영화를 입력하세요.">
-		<button type="button" class="btn btn-type1 text-white">검색</button>
-	</div>
+	<!-- <div class="col-12 pt-2 d-flex justify-content-center mb-3"> -->
+	<jsp:include page="../include/searchInput.jsp" />
+	<!-- </div> -->
 	<c:forEach var="movie" items="${result}">
 	<div class="d-flex my-movie-box mb-4">
 			<div class="movie-poster p-4 ml-3 d-flex align-items-center">
@@ -18,9 +17,9 @@
 			<div class="col-10">
 				<div class="d-flex align-items-end h-75">
 					<div>
-						<div class="display-3 font-weight-bold">${movie.movieNm}</div>
+						<div class="display-4 font-weight-bold">${movie.movieNm}</div>
 						<h5 class="ml-2">${movie.movieNmEn}</h5>
-						<div class="ml-2">${movie.genreAlt} | 상영시간 | 평점</div>
+						<div class="ml-2">${movie.genreAlt}</div>
 						<h4 class="ml-2 mt-3">${movie.director}</h4>
 						<h5 class="ml-2 mt-3">${movie.actor}</h4>
 					</div>
@@ -37,11 +36,23 @@
 						</a>
 					</div>
 					<div>
-						<button type="button" class="btn btn-type1 text-white">평가</button>
-						<button type="button" class="btn btn-type3 text-dark">보고싶어요</button>
+						<a href="/search/detail_movie_view?movieCd=${movie.movieCd}" class="btn btn-type1 text-white"
+						>상세보기</a>
 					</div>
 				</div>
 			</div>
 	</div>
 	</c:forEach>
 </div>
+
+<script>
+	$(document).ready(function() {
+		/*$('#search-b tn').on('click', function(e) {
+			//alert(1234);
+			e.preventDefault();	
+			let search = $('#search').val().trim();
+			
+			location.href = "/search/movie_view?search=" + search;
+		}); */
+	});
+</script>
