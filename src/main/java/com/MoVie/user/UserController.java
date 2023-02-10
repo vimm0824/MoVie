@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -29,5 +30,20 @@ public class UserController {
 		session.removeAttribute("loginId");
 		session.removeAttribute("nickname");
 		return "redirect:/main";
+	}
+	
+	@GetMapping("/find_password_view")
+	public String findPassword(Model model) {
+		model.addAttribute("viewName", "user/findPassword");
+		return "template/layout"; 
+	}
+	
+	@GetMapping("/certify_view")
+	public String certifyCode(
+			@RequestParam("userId") int userId,
+			Model model) {
+		model.addAttribute("id", userId);
+		model.addAttribute("viewName", "user/certifyCode");
+		return "template/layout"; 
 	}
 }

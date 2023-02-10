@@ -33,7 +33,10 @@ public class SearchBO {
 			String movieCd = (String) movie.get("movieCd");	
 			String movieNmEn = (String) movie.get("movieNmEn");
 			String genreAlt = (String) movie.get("genreAlt");
-			String prdtYear = (String) movie.get("prdtYear");
+			String openDt = (String) movie.get("openDt");
+			if (openDt.length() >= 4) {
+				openDt = openDt.substring(0, 4);
+			}
 			input.put("movieNm", movieNm);
 			input.put("movieCd", movieCd);
 			input.put("genreAlt", genreAlt);
@@ -45,7 +48,7 @@ public class SearchBO {
 			
 			for (LinkedHashMap<String, String> item : nsAPI) {
 				//movieNm = "<b>" + movieNm + "</b>";
-				if (item.get("title").equals(movieNm) && item.get("pubDate").equals(prdtYear)) {
+				if (item.get("title").equals(movieNm) && item.get("pubDate").equals(openDt)) {
 					input.put("image", item.get("image"));
 					
 					String director = item.get("director");
@@ -74,10 +77,19 @@ public class SearchBO {
 		
 		Map<String, Object> tempMap = new LinkedHashMap<>();
 		List<LinkedHashMap<String, Object>> tempList = new ArrayList<>();
-		//Map<String, Object> result = new LinkedHashMap<>();
-		String movieNm = (String) result.get("movieNm");
-		String prdtYear = (String) result.get("prdtYear");
 		
+		String movieNm = (String) result.get("movieNm");
+		String openDt = (String) result.get("openDt");
+		
+		// 날짜를 yyyy/MM/dd로 바꾸기 위한 코드
+		// 19990101
+		String day = openDt.substring(6);
+		String month = openDt.substring(4, 6);
+		String year = openDt.substring(0, 4);
+		openDt = year + "/" + month + "/" + day;
+		result.put("openDt", openDt);
+		
+		// map 안에 list안에 map의 값이 필요해서 사용한 코드
 		tempList = (List<LinkedHashMap<String, Object>>) result.get("nations");
 		tempMap = tempList.get(0);
 		result.put("nationNm", tempMap.get("nationNm"));
@@ -93,7 +105,7 @@ public class SearchBO {
 		movieNm = "<b>" + movieNm + "</b>";
 		
 		for (LinkedHashMap<String, String> item : nsAPI) {
-			if (item.get("title").equals(movieNm) && item.get("pubDate").equals(prdtYear)) {
+			if (item.get("title").equals(movieNm) && item.get("pubDate").equals(year)) {
 				result.put("image", item.get("image"));
 				
 				String director = item.get("director");

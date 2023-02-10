@@ -7,7 +7,7 @@
 	</div>
 	<div class="position-center input-group d-flex justify-content-center col-6">
 		<input type="text" id="loginId" class="form-control"
-			placeholder="아이디를 입력해주세요.">
+			placeholder="아이디">
 		<button type="button" id="idCheckBtn" class="btn btn-type1 text-white">중복확인</button>
 	</div>
 	<div class="text-center p-0">
@@ -17,7 +17,7 @@
 	</div>
 	<div class="position-center mt-3 mb-3 d-flex justify-content-center col-6">
 		<input type="password" id="password" class="form-control mt-2"
-			placeholder="비밀번호를 입력해주세요.">
+			placeholder="비밀번호">
 	</div>
 	<div class="position-center mb-3 d-flex justify-content-center col-6">
 		<input type="password" id="passwordCol" class="form-control mt-2"
@@ -25,14 +25,18 @@
 	</div>
 	<div class="position-center mb-3 mb-2 d-flex justify-content-center col-6">
 		<input type="text" id="name" class="form-control mt-2"
-			placeholder="이름을 입력해주세요.">
+			placeholder="이름">
+	</div>
+	<div class="position-center mb-3 d-flex justify-content-center col-6">
+		<input type="text" id="email" class="form-control mt-2"
+			placeholder="이메일">
 	</div>
 	<div class="position-center mb-3 d-flex justify-content-center col-6">
 		<input type="text" id="nickname" class="form-control mt-2"
-			placeholder="닉네임을 입력해주세요.">
+			placeholder="닉네임">
 	</div>
 	<div class="mt-4 d-flex justify-content-center">
-		<button type="button" id="signUp" class="btn btn-type1 text-white col-5">회원가입</button>
+		<button type="button" id="signUp" class="btn btn-type1 text-white col-5 mb-3">회원가입</button>
 	</div>
 </div>
 
@@ -78,6 +82,8 @@
 			let password = $('#password').val().trim();
 			let passwordCol = $('#passwordCol').val().trim();
 			let passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+			let email = $('#email').val().trim();
+			let emailCol = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 			let name = $('#name').val().trim();
 			let nickname = $('#nickname').val().trim();
 			
@@ -101,6 +107,14 @@
 				alert("비밀번호는 영문자+숫자+특수기호 조합으로 8~25자리 사용하세요");
 				return false;
 			}
+			if (email.length < 1) {
+				alert("이메일을 입력하세요.");
+				return false;
+			}
+			if (emailCol.test(email) == false) {
+				alert("이메일을 형식에 맞게 입력하세요.");
+				return false;
+			} 
 			if (name.length < 1) {
 				alert("이름을 입력하세요.");
 				return false;
@@ -113,7 +127,7 @@
 			$.ajax({
 				type:"post"
 				, url:"/user/sign_up"
-				, data:{"loginId":loginId,"password":password,"name":name,"nickname":nickname}
+				, data:{"loginId":loginId,"password":password,"email":email,"name":name,"nickname":nickname}
 			
 				, success:function(data) {
 					if (data.code == 1) {

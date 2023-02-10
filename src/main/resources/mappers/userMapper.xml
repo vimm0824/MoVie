@@ -10,6 +10,7 @@
  			, `password`
  			, `name`
  			, `nickname`
+ 			, `email`
  			, `profileUrl`
  			, `createdAt`
  			, `updatedAt`
@@ -20,6 +21,7 @@
  			, #{password}
  			, #{name}
  			, #{nickname}
+ 			, #{email}
  			, null
  			, NOW()
  			, NOW()
@@ -42,6 +44,7 @@
  			, `password`
  			, `name`
  			, `nickname`
+ 			, `email`
  			, `profileUrl`
  			, `createdAt`
  			, `updatedAt`
@@ -51,5 +54,26 @@
  			`loginId` = #{loginId}
  			AND
  			`password` = #{password}
+ 	</select>
+ 	
+ 	<select id="selecetUserByLoginIdNameEmail" resultType="com.MoVie.user.model.User">
+ 		SELECT
+ 			`id`
+ 			, `loginId`
+ 			, `password`
+ 			, `name`
+ 			, `nickname`
+ 			, `email`
+ 			, `profileUrl`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`loginId` = #{loginId}
+ 			AND
+ 			`name` = #{name}
+ 			AND
+ 			`email` = #{email}
  	</select>
  </mapper>

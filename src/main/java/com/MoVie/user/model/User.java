@@ -9,9 +9,11 @@ public class User {
 	private String password;
 	private String name;
 	private String nickname;
+	private String email;
 	private String profileUrl;
 	private Date createdAt; 
 	private Date updatedAt;
+
 	//
 	public int getId() {
 		return id;
@@ -42,6 +44,12 @@ public class User {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getProfileUrl() {
 		return profileUrl;

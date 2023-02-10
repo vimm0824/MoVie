@@ -6,15 +6,18 @@
 	</div>
 	<div class="d-flex justify-content-center">
 		<input type="text" id="loginId" class="form-control col-6"
-			placeholder="아이디를 입력해주세요.">
+			placeholder="아이디">
 	</div>
 	<div class="mt-3 d-flex justify-content-center">
 		<input type="password" id="password" class="form-control col-6"
-			placeholder="비밀번호를 입력해주세요.">
+			placeholder="비밀번호">
 	</div>
 	<div class="mt-3 d-flex justify-content-center">
 		<button type="submit" id="signIn" class="btn btn-type1 text-white">로그인</button>
 		<a href="/user/sign_up_view" type="button" id="signUp" class="btn btn-type2 text-dark">회원가입</a>
+	</div>
+	<div class="d-flex justify-content-center mt-2">
+		<a href="/user/find_password_view"><small class="text-secondary font-italic">비밀번호를 잊어버리셨나요?</small></a>
 	</div>
 </div>
 

@@ -11,6 +11,7 @@ public interface UserDAO {
 	public int insertUser(
 			@Param("loginId") String loginId,
 			@Param("password") String password,
+			@Param("email") String email,
 			@Param("name") String name,
 			@Param("nickname") String nickname);
 	
@@ -19,4 +20,9 @@ public interface UserDAO {
 	public User selecetUserByLoginIdPassword(
 			@Param("loginId") String loginId, 
 			@Param("password") String password);
+	
+	public User selecetUserByLoginIdNameEmail(
+			@Param("loginId") String loginId,
+			@Param("name") String name,
+			@Param("email") String email);
 }

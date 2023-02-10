@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.MoVie.user.dao.CertifyDAO">
+ 	<insert id="insertCertifyCode" parameterType="map">
+ 		INSERT INTO `certify`
+ 		(
+ 			userId
+ 			, code
+ 			, createdAt
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{code}
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selecetCertifyByUserIdCode" parameterType="map" resultType="com.MoVie.user.model.Certify">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `code`
+ 			, `createdAt`
+ 		FROM
+ 			`certify`
+ 		WHERE
+ 			`userID` = #{userId}
+ 			AND
+ 			`code` = #{code}
+ 	</select>
+ </mapper>
