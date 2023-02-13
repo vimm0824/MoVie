@@ -1,8 +1,5 @@
 package com.MoVie.user;
 
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,10 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.MoVie.common.EncryptUtils;
 import com.MoVie.user.bo.CertifyBO;
 import com.MoVie.user.bo.UserBO;
+import com.MoVie.user.model.Certify;
 import com.MoVie.user.model.Mail;
 import com.MoVie.user.model.User;
 
@@ -128,13 +127,72 @@ public class UserRestController {
 		return result;
 	}
 	
+	@PostMapping("/certify_code")
 	public Map<String, Object> certifyCode(
 			@RequestParam("userId") int userId,
 			@RequestParam("code") String code
 			) {
 		Map<String, Object> result = new HashMap<>();
 		
+		Certify certify = certifyBO.getCertifyByUserIdCode(userId, code);
+		if (certify != null) {
+			result.put("code", 1);
+			result.put("result", "인증성공, 비밀번호를 바꿔주세요!");
+		} else {
+			result.put("code", 500);
+			result.put("result", "인증실패, 다시 시도해주세요.");
+		}
 		
 		return result;
 	}
+	
+	@PostMapping("/change_password")
+	public Map<String, Object> changePassword(
+			@RequestParam("userId") int userId,
+			@RequestParam("password") String password
+			) {
+		Map<String, Object> result = new HashMap<>();
+		
+		password = EncryptUtils.md5(password);
+		
+		int row = userBO.updateUserByuserId(userId, password);
+		
+		if (row > 0) {
+			result.put("code", 1);
+			result.put("result", "비밀번호가 변경되었습니다. 다시 로그인 해주세요.");
+		} else {
+			result.put("code", 500);
+			result.put("result", "비밀번호가 변경에 실패하였습니다. 다시 시 해주세요.");
+		}
+		
+		return result;
+	}
+	
+	@PostMapping("/update_user")
+	public Map<String, Object> updateUser(
+			@RequestParam(value="userId", required=false) Integer userId,
+			@RequestParam(value="nickname", required=false) String nickname,
+			@RequestParam(value="file", required=false) MultipartFile file,
+			HttpSession session
+			) {
+		Map<String, Object> result = new HashMap<>();
+		
+		if (userId == null) {
+			result.put("code", 500);
+			result.put("result", "로그인후 이용해주세요.");
+			return result;
+		}
+		
+		userBO.updataeUserById(userId, nickname, file);
+		
+		result.put("code", 1);
+		result.put("result", "수정이 완료되었습니다.");
+		
+		if (nickname != null) {
+			session.setAttribute("nickname", nickname);
+		}
+		
+		return result;
+	}
+	
 }

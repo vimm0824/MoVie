@@ -9,10 +9,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.MoVie.api.BoxOfficeAPI;
+import com.MoVie.api.NaverSearchAPI;
 import com.MoVie.api.model.DailyBoxOffice;
 import com.MoVie.api.model.NaverSearch;
-import com.MoVie.common.BoxOfficeAPI;
-import com.MoVie.common.NaverSearchAPI;
 import com.MoVie.info.model.BoxOfficeView;
 
 @Service

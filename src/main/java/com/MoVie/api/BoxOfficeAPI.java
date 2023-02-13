@@ -1,4 +1,4 @@
-package com.MoVie.common;
+package com.MoVie.api;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

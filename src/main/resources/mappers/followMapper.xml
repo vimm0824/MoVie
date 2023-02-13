@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.MoVie.follow.dao.FollowDAO">
+ 	<select id="selectFollowByUserIdFollowId" parameterType="map" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`follow`
+ 		WHERE
+ 			<if test="userId != null">
+ 			`userId` = #{userId}
+ 			</if>
+ 			AND
+ 			<if test="followId != null">
+ 			`followId` = #{followId}
+ 			</if>
+ 	</select>
+ 	
+ 	<delete id="deleteFollowByUserIdFollowId" parameterType="map">
+ 		DELETE 
+ 		FROM
+ 			`follow`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND
+ 			`followId` = #{followId}
+ 	</delete>
+ 	
+ 	<insert id="insertFollowByUserIdFollowId" parameterType="map">
+ 		INSERT INTO `follow`
+ 		(
+ 			`userId`
+ 			, `followId`
+ 			, `createdAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{followId}
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<select id="countFollowByUserId" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`follow`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
+ 	<select id="countFollowByFollowId" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`follow`
+ 		WHERE
+ 			`followId` = #{followId}
+ 	</select>
+ </mapper>

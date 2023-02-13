@@ -17,7 +17,7 @@
 			<div class="col-10">
 				<div class="d-flex align-items-end h-75">
 					<div>
-						<div class="display-4 font-weight-bold">${movie.movieNm}</div>
+						<div class="h2 font-weight-bold">${movie.movieNm}</div>
 						<h5 class="ml-2">${movie.movieNmEn}</h5>
 						<div class="ml-2">${movie.genreAlt}</div>
 						<h4 class="ml-2 mt-3">${movie.director}</h4>

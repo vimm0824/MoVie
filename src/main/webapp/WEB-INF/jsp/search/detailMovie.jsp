@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="position-center">
 	<div class="col-12 text-center">
@@ -53,67 +54,35 @@
 	<h2 class="pl-3">리뷰작성</h2>
 	<div class="d-flex justify-content-around align-items-center border border-secondary border-3 mb-3 ml-4
 	">
-		<div class="h3 ml-3">userId</div>
-		<input type="text" class="form-control col-5" placeholder="리뷰를 입력해주세요.">
-		<div class="starpoint_wrap">
-			  <div class="starpoint_box">
-			    <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5</span></label>
-			    <label for="starpoint_2" class="label_star" title="1"><span class="blind">1</span></label>
-			    <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5</span></label>
-			    <label for="starpoint_4" class="label_star" title="2"><span class="blind">2</span></label>
-			    <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5</span></label>
-			    <label for="starpoint_6" class="label_star" title="3"><span class="blind">3</span></label>
-			    <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5</span></label>
-			    <label for="starpoint_8" class="label_star" title="4"><span class="blind">4</span></label>
-			    <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5</span></label>
-			    <label for="starpoint_10" class="label_star" title="5"><span class="blind">5</span></label>
-			    <input type="radio" name="starpoint" id="starpoint_1" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_2" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_3" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_4" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_5" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_6" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_7" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_8" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_9" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
-			    <span class="starpoint_bg"></span>
-			  </div>
+		<div class="h3 ml-3"><span class="reviewUser">userId</span></div>
+		
+		<!-- <form class="" name="myform" id="myform" method="post"> -->
+		<div class="myform">
+			<fieldset>
+				<input type="radio" name="reviewStar" value="5" id="rate1" class="starValue">
+				<label for="rate1">★</label>
+				<input type="radio" name="reviewStar" value="4" id="rate2" class="starValue">
+				<label for="rate2">★</label>
+				<input type="radio" name="reviewStar" value="3" id="rate3" class="starValue">
+				<label for="rate3">★</label>
+				<input type="radio" name="reviewStar" value="2" id="rate4" class="starValue">
+				<label for="rate4">★</label>
+				<input type="radio" name="reviewStar" value="1" id="rate5" class="starValue">
+				<label for="rate5">★</label>
+			</fieldset>
 		</div>
-		<button type="button" class="btn btn-type1 text-white">작성</button>
+		<!-- </form>		 -->
+		<textarea rows="5" class="form-control col-6" id="review"></textarea>
+		<button type="button" id="reviewWriteBtn" class="btn btn-type1 text-white">작성</button>
 	</div>
 	</div>
 	<div class="update-box d-none">
 	<h2 class="pl-3">리뷰수정</h2>
-	<div class="d-flex justify-content-around align-items-center border border-secondary border-3 mb-3 ml-4
-	">
+	<div class="d-flex justify-content-around align-items-center border border-secondary border-3 mb-3 ml-4">
 		<div class="h3 ml-3">userId</div>
+		
+		
 		<input type="text" class="form-control col-5" placeholder="리뷰를 입력해주세요.">
-		<div class="starpoint_wrap">
-			  <div class="starpoint_box">
-			    <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5</span></label>
-			    <label for="starpoint_2" class="label_star" title="1"><span class="blind">1</span></label>
-			    <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5</span></label>
-			    <label for="starpoint_4" class="label_star" title="2"><span class="blind">2</span></label>
-			    <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5</span></label>
-			    <label for="starpoint_6" class="label_star" title="3"><span class="blind">3</span></label>
-			    <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5</span></label>
-			    <label for="starpoint_8" class="label_star" title="4"><span class="blind">4</span></label>
-			    <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5</span></label>
-			    <label for="starpoint_10" class="label_star" title="5"><span class="blind">5</span></label>
-			    <input type="radio" name="starpoint" id="starpoint_1" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_2" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_3" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_4" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_5" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_6" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_7" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_8" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_9" class="star_radio">
-			    <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
-			    <span class="starpoint_bg"></span>
-			  </div>
-		</div>
 		<button type="button" class="btn btn-type1 text-white">작성</button>
 	</div>
 	</div>
@@ -123,14 +92,14 @@
 			<h1>리뷰</h1>
 		</div>
 		<div class="col-12">
+			<c:forEach var="review" items="${reviewList}">
 			<table class="table text-center ml-4">
 				<tr class="border border-1">
 					<td>vimm0824</td>
+					<td>${review.point}</td>
 					<td>
-						영화가 너무 따분했다...
+						${review.review}
 					</td>
-					<td>3.5</td>
-					<td></td>
 					<td>
 						<button type="button" class="btn btn-type1 text-white update-btn">
 							<img alt="수정" src="https://cdn.pixabay.com/photo/2014/04/02/11/17/pencil-305800_1280.png"
@@ -143,12 +112,45 @@
 					</td>
 				</tr>
 			</table>
+			</c:forEach>
 		</div>
 	</div>
 </div>
 
 <script>
 	$(document).ready(function() {
+			
+		let point = 0;
+		$('input[name=reviewStar]').on('change', function() {
+			point = $('input[name=reviewStar]:checked').val();
+		});
+		$('#reviewWriteBtn').on('click', function() {
+			if (point == 0) {
+				alert("평점 부탁드립니다.");
+				return false;
+			}
+			let review = $('#review').val();
+			let movieCd = ${result.movieCd};
+			
+			$.ajax({
+				type:"post"
+				, url:"/review/add_review"
+				, data:{"movieCd":movieCd,"point":point,"review":review}
+			
+				, success:function(data) {
+					if (data.code == 1) {
+						location.reload();
+					} else {
+						alert(data.result);
+					}
+				}
+				, error:function(e) {
+					alert("ajax error!!!" + e);
+				}
+			});
+		});
+		
+		// 리뷰작성 버튼
 		$('#review-btn').on('click', function() {
 			if($('.update-box').hasClass("d-none") == true) {
 				if ($('.write-box').hasClass("d-none") == true) {
@@ -156,11 +158,12 @@
 				} else {
 					$('.write-box').addClass("d-none")
 				}
-			} else {
+			} else { 
 				alert("리뷰 수정중에는 작성할수 없습니다.");
 			}
 		});
 		
+		// 리뷰수정 버틎
 		$('.update-btn').on('click', function() {
 			if($('.write-box').hasClass("d-none") == true) {
 				if ($('.update-box').hasClass("d-none") == true) {

@@ -25,4 +25,15 @@ public interface UserDAO {
 			@Param("loginId") String loginId,
 			@Param("name") String name,
 			@Param("email") String email);
+	
+	public int updateUserByuserId(
+			@Param("userId") int userId,
+			@Param("password") String password);
+	
+	public User selectetUserById(int id);
+	
+	public void updataeUserById(
+			@Param("id") int id,
+			@Param("nickname") String nickname,
+			@Param("profileUrl") String profileUrl);
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.MoVie.review.bo.ReviewBO;
+import com.MoVie.review.model.Review;
 import com.MoVie.search.bo.SearchBO;
 
 @RequestMapping("/search")
@@ -18,6 +20,8 @@ public class SearchController {
 
 	@Autowired
 	private SearchBO searchBO;
+	@Autowired
+	private ReviewBO reviewBO;
 	
 	@GetMapping("/movie_view")
 	public String searchMovie(
@@ -43,8 +47,10 @@ public class SearchController {
 			) {
 		
 		Map<String, Object> result = searchBO.getDetailMovie(movieCd);
+		List<Review> reviewList = reviewBO.getReviewListByMovieCd(Integer.parseInt(movieCd));
 		
 		model.addAttribute("result", result);
+		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("viewName", "search/detailMovie");
 		return "template/layout";
 	}

@@ -74,15 +74,28 @@ public class CertifyBO {
 	    mailSender.send(message);
 	}
 	
+	/*
+	 * 3분안에 인증
+	 */
 	public Certify getCertifyByUserIdCode(int userId, String code) {
+		// BO 불러오는 시간
+		Date now = new Date();
 		Certify certify = certifyDAO.selecetCertifyByUserIdCode(userId, code);
 		
-		Date now = new Date();
-		
 		if (certify != null) {
+			// 인증번호 생성시간
+			Date createdAt = certify.getCreatedAt();
 			
+			// BO - 생성 < 5분 이여야 OK
+			long minLong = (now.getTime() - createdAt.getTime()) / 1000;
+			int min = Long.valueOf(minLong).intValue();
+			if (min < 180) {
+				return certify;
+			} else {
+				return null;
+			}
 		} else {
-			
+			return null;
 		}
 	}
 }

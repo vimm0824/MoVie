@@ -13,10 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.MoVie.api.BoxOfficeAPI;
+import com.MoVie.api.NaverSearchAPI;
 import com.MoVie.api.model.DailyBoxOffice;
 import com.MoVie.api.model.NaverSearch;
-import com.MoVie.common.BoxOfficeAPI;
-import com.MoVie.common.NaverSearchAPI;
 import com.MoVie.info.bo.InfoBO;
 import com.MoVie.info.model.BoxOfficeView;
 

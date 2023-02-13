@@ -1,10 +1,14 @@
 package com.MoVie.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.MoVie.user.bo.UserBO;
+import com.MoVie.user.model.User;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -12,6 +16,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class UserController {
 
+	@Autowired
+	private UserBO userBO;
+	
 	@GetMapping("/sign_in_view")
 	public String signIn(Model model) {
 		model.addAttribute("viewName", "user/signIn");
@@ -46,4 +53,6 @@ public class UserController {
 		model.addAttribute("viewName", "user/certifyCode");
 		return "template/layout"; 
 	}
+	
+	
 }

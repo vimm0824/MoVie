@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.MoVie.review.dao.ReviewDAO">
+ 	<insert id="insertReviewByUserId" parameterType="map">
+ 		INSERT INTO `review`
+ 		(
+ 			`userId`
+ 			, `movieCd`
+ 			, `point`
+ 			, `review`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{movieCd}
+ 			, #{point}
+ 			, #{review}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selectReviewByUserIdMovieCd" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`review`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND
+ 			`movieCd` = #{movieCd} 
+ 	</select>
+ 	
+ 	<select id="selectReviewListByMovieCd" resultType="com.MoVie.review.model.Review">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `movieCd`
+ 			, `point`
+ 			, `review`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`review`
+ 		WHERE
+ 			`movieCd` = #{movieCd}
+ 		ORDER BY `id` DESC
+ 	</select>
+ </mapper>

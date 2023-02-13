@@ -76,4 +76,40 @@
  			AND
  			`email` = #{email}
  	</select>
+ 	
+ 	<update id="updateUserByuserId" parameterType="map">
+ 		UPDATE `user`
+ 		SET
+ 			`password` = #{password}
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`id` = #{userId}
+ 	</update>
+ 	
+ 	<select id="selectetUserById" parameterType="int" resultType="com.MoVie.user.model.User">
+ 		SELECT
+ 			`id`
+ 			, `loginId`
+ 			, `password`
+ 			, `name`
+ 			, `nickname`
+ 			, `email`
+ 			, `profileUrl`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
+ 	
+ 	<update id="updataeUserById" parameterType="map">
+ 		UPDATE `user`
+ 		SET
+ 			`nickname` = #{nickname}
+ 			, `profileUrl` = #{profileUrl}
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
  </mapper>
