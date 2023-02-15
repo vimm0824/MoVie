@@ -15,6 +15,9 @@ import com.MoVie.review.bo.ReviewBO;
 import com.MoVie.review.model.ReviewView;
 import com.MoVie.search.bo.SearchBO;
 import com.MoVie.search.bo.SearchViewBO;
+import com.MoVie.wish.bo.WishBO;
+
+import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/search")
 @Controller
@@ -24,6 +27,8 @@ public class SearchController {
 	private SearchBO searchBO;
 	@Autowired
 	private ReviewBO reviewBO;
+	@Autowired
+	private WishBO wishBO;
 	@Autowired
 	private SearchViewBO searchViewBO;
 	
@@ -50,6 +55,7 @@ public class SearchController {
 	@GetMapping("/detail_movie_view")
 	public String detailMovie(
 			@RequestParam("movieCd") String movieCd,
+			HttpSession session,
 			Model model
 			) {
 		
@@ -57,8 +63,15 @@ public class SearchController {
 		int pointCount = reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf((String)result.get("movieCd")), 5) +
 				reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf((String)result.get("movieCd")), 4);
 		List<ReviewView> reviewList = reviewBO.getReviewViewListByMovieCd(Integer.parseInt(movieCd));
+		boolean wish = false;
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId != null) {
+			wish = wishBO.haveWishByUserIdMovieCd(userId, Integer.valueOf(movieCd));
+		}
 		
 		model.addAttribute("result", result);
+		model.addAttribute("wish", wish);
 		model.addAttribute("pointCount", pointCount);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("viewName", "search/detailMovie");

@@ -39,12 +39,21 @@
 						</a>
 						<a href="#" class="my-page-number text-dark">
 							<div class="text-center mb-2">4.3</div>
-							<div>평균평</div>
+							<div>평균평점</div>
 						</a>
 					</div>
 					<div>
 						<button type="button" id="review-btn" class="btn btn-type1 text-white">리뷰작성</button>
-						<button type="button" class="btn btn-type3 text-dark">보고싶어요</button>
+						<c:choose>
+							<c:when test="${wish eq false}">
+							<button type="button" id="wish-btn" class="btn btn-type3 text-dark"
+							data-movie-code="${result.movieCd}">보고싶어요</button>
+							</c:when>
+							<c:otherwise>
+							<button type="button" id="wish-btn" class="btn btn-type3 text-dark"
+							data-movie-code="${result.movieCd}">취소</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
@@ -150,13 +159,12 @@
 
 <script>
 	$(document).ready(function() {
-			
 		let point = 0;
-		
+		// 별점 뷰 구현
 		$('input[name=reviewStar]').on('change', function() {
 			point = $('input[name=reviewStar]:checked').val();
 		});
-		
+		// 리뷰 작성
 		$('#reviewWriteBtn').on('click', function() {
 			if (point == 0) {
 				alert("평점 부탁드립니다.");
@@ -210,6 +218,28 @@
 			} else {
 				alert("리뷰 작성중에는 수정할수 없습니다.");
 			}
-		})
+		});
+		
+		$('#wish-btn').on('click', function() {
+			let movieCd = $(this).data('movie-code');
+			
+			
+			$.ajax({
+				type:"get"
+				, url:"/wish/wish"
+				, data:{"movieCd":movieCd}
+			
+				, success:function(data) {
+					if (data.code == 1) {
+						location.reload();
+					} else {
+						alert(data.result);
+					}
+				}
+				, error:function(e) {
+					alert("ajax error!!!");
+				}
+			});
+		});
 	});
 </script>
