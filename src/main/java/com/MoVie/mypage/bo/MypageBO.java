@@ -5,10 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.MoVie.follow.bo.FollowBO;
 import com.MoVie.mypage.model.UserCardView;
+import com.MoVie.review.bo.ReviewBO;
 import com.MoVie.user.bo.UserBO;
 import com.MoVie.user.model.User;
-
-import jakarta.servlet.http.HttpSession;
 
 @Service
 public class MypageBO {
@@ -17,6 +16,8 @@ public class MypageBO {
 	private UserBO userBO;
 	@Autowired
 	private FollowBO followBO;
+	@Autowired
+	private ReviewBO reviewBO;
 	
 	public UserCardView generateCard(
 			int pageUserId, int userId) {
@@ -31,6 +32,8 @@ public class MypageBO {
 		User user = userBO.getUserById(pageUserId);
 		card.setUser(user);
 		
+		//reviewCount
+		card.setReviewCount(reviewBO.getCountReviewByUserId(pageUserId));
 		//followCount
 		card.setFollowCount(followBO.countFollowByFollowId(pageUserId));
 		//followingCount

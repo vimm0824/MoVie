@@ -1,5 +1,6 @@
 package com.MoVie.search;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.MoVie.review.bo.ReviewBO;
-import com.MoVie.review.model.Review;
+import com.MoVie.review.model.ReviewView;
 import com.MoVie.search.bo.SearchBO;
+import com.MoVie.search.bo.SearchViewBO;
 
 @RequestMapping("/search")
 @Controller
@@ -22,6 +24,8 @@ public class SearchController {
 	private SearchBO searchBO;
 	@Autowired
 	private ReviewBO reviewBO;
+	@Autowired
+	private SearchViewBO searchViewBO;
 	
 	@GetMapping("/movie_view")
 	public String searchMovie(
@@ -29,11 +33,14 @@ public class SearchController {
 			Model model) {
 		// 검색어에 아무것도 입력하지 않으면 박스오피스 1위가 나오게 할것
 		
-		if (search == "") {
-			search = "라라랜드";
-		}
+		List<Map<String, Object>> result = new ArrayList<>();
 		
-		List<Map<String, Object>> result = searchBO.getSearchMovie(search);
+		if (search == "") {
+			return "redirect:/main";
+		} else {
+//			result = searchBO.getSearchMovie(search);
+			result = searchViewBO.getSearchView(search);
+		}
 		
 		model.addAttribute("result", result);
 		model.addAttribute("viewName", "search/searchMovie");
@@ -47,9 +54,12 @@ public class SearchController {
 			) {
 		
 		Map<String, Object> result = searchBO.getDetailMovie(movieCd);
-		List<Review> reviewList = reviewBO.getReviewListByMovieCd(Integer.parseInt(movieCd));
+		int pointCount = reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf((String)result.get("movieCd")), 5) +
+				reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf((String)result.get("movieCd")), 4);
+		List<ReviewView> reviewList = reviewBO.getReviewViewListByMovieCd(Integer.parseInt(movieCd));
 		
 		model.addAttribute("result", result);
+		model.addAttribute("pointCount", pointCount);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("viewName", "search/detailMovie");
 		return "template/layout";

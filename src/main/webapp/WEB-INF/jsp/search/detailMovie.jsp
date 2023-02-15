@@ -30,7 +30,7 @@
 				<div class="col-10 d-flex align-items-center justify-content-between mt-3">
 					<div class="d-flex justify-content-around col-6 mr-4">
 						<a href="#" class="my-page-number text-dark">
-							<div class="text-center mb-2">3000</div>
+							<div class="text-center mb-2">${pointCount}</div>
 							<div class="ml-1">추천</div>
 						</a>
 						<a href="#" class="my-page-number text-dark">
@@ -54,9 +54,7 @@
 	<h2 class="pl-3">리뷰작성</h2>
 	<div class="d-flex justify-content-around align-items-center border border-secondary border-3 mb-3 ml-4
 	">
-		<div class="h3 ml-3"><span class="reviewUser">userId</span></div>
-		
-		<!-- <form class="" name="myform" id="myform" method="post"> -->
+		<div class="h3 ml-3"><span class="reviewUser">${nickname}</span></div>
 		<div class="myform">
 			<fieldset>
 				<input type="radio" name="reviewStar" value="5" id="rate1" class="starValue">
@@ -70,8 +68,10 @@
 				<input type="radio" name="reviewStar" value="1" id="rate5" class="starValue">
 				<label for="rate5">★</label>
 			</fieldset>
+			<div class="d-flex justify-content-center notice">
+				<small class="text-center">4점, 5점은 추천</small>
+			</div>
 		</div>
-		<!-- </form>		 -->
 		<textarea rows="5" class="form-control col-6" id="review"></textarea>
 		<button type="button" id="reviewWriteBtn" class="btn btn-type1 text-white">작성</button>
 	</div>
@@ -79,10 +79,25 @@
 	<div class="update-box d-none">
 	<h2 class="pl-3">리뷰수정</h2>
 	<div class="d-flex justify-content-around align-items-center border border-secondary border-3 mb-3 ml-4">
-		<div class="h3 ml-3">userId</div>
-		
-		
-		<input type="text" class="form-control col-5" placeholder="리뷰를 입력해주세요.">
+		<div class="h3 ml-3 userId"></div>
+		<div class="myform">
+			<fieldset>
+				<input type="radio" name="reviewStar" value="5" id="rate1" class="starValue">
+				<label for="rate1">★</label>
+				<input type="radio" name="reviewStar" value="4" id="rate2" class="starValue">
+				<label for="rate2">★</label>
+				<input type="radio" name="reviewStar" value="3" id="rate3" class="starValue">
+				<label for="rate3">★</label>
+				<input type="radio" name="reviewStar" value="2" id="rate4" class="starValue">
+				<label for="rate4">★</label>
+				<input type="radio" name="reviewStar" value="1" id="rate5" class="starValue">
+				<label for="rate5">★</label>
+			</fieldset>
+			<div class="d-flex justify-content-center notice">
+				<small class="text-center">4점, 5점은 추천</small>
+			</div>
+		</div>
+		<textarea rows="5" class="form-control col-6"></textarea>
 		<button type="button" class="btn btn-type1 text-white">작성</button>
 	</div>
 	</div>
@@ -91,17 +106,32 @@
 		<div class="d-flex justify-content-start p-4">
 			<h1>리뷰</h1>
 		</div>
-		<div class="col-12">
+		<div class="col-12 container position-center">
+			<table class="ml-4 reveiw-table">
 			<c:forEach var="review" items="${reviewList}">
-			<table class="table text-center ml-4">
-				<tr class="border border-1">
-					<td>vimm0824</td>
-					<td>${review.point}</td>
-					<td>
-						${review.review}
+				<tr class="text-center">
+					<td class=""><h2>${review.user.nickname}</h2></td>
+					<td class="">
+						<c:set var="point" value="${review.review.point}" />
+						<c:forEach begin="1" end="5">
+							<c:choose>
+								<c:when test="${point > 0.5}">
+									<img src="/static/img/star_fill.png" width="20" alt="star">
+									<c:set var="point" value="${point - 1}" />
+								</c:when>
+								<c:when test="${point == 0}">
+									<img src="/static/img/star_empty.png" width="20">
+								</c:when>
+							</c:choose>
+						</c:forEach>
 					</td>
-					<td>
-						<button type="button" class="btn btn-type1 text-white update-btn">
+					<td class="col-3">
+						${review.review.review}
+					</td>
+					<c:if test="${review.user.id eq userId}">
+					<td class="col-3">
+						<button type="button" class="btn btn-type1 text-white update-btn"
+						 data-user-id="${review.user.id}" data-user-nickname="${review.user.nickname}">
 							<img alt="수정" src="https://cdn.pixabay.com/photo/2014/04/02/11/17/pencil-305800_1280.png"
 								width="20" height="30">
 						</button>
@@ -110,9 +140,10 @@
 								width="30" height="30">
 						</button>
 					</td>
+					</c:if>
 				</tr>
-			</table>
 			</c:forEach>
+			</table>
 		</div>
 	</div>
 </div>
@@ -121,9 +152,11 @@
 	$(document).ready(function() {
 			
 		let point = 0;
+		
 		$('input[name=reviewStar]').on('change', function() {
 			point = $('input[name=reviewStar]:checked').val();
 		});
+		
 		$('#reviewWriteBtn').on('click', function() {
 			if (point == 0) {
 				alert("평점 부탁드립니다.");
@@ -154,9 +187,9 @@
 		$('#review-btn').on('click', function() {
 			if($('.update-box').hasClass("d-none") == true) {
 				if ($('.write-box').hasClass("d-none") == true) {
-					$('.write-box').removeClass("d-none")
+					$('.write-box').removeClass("d-none");
 				} else {
-					$('.write-box').addClass("d-none")
+					$('.write-box').addClass("d-none");
 				}
 			} else { 
 				alert("리뷰 수정중에는 작성할수 없습니다.");
@@ -165,11 +198,14 @@
 		
 		// 리뷰수정 버틎
 		$('.update-btn').on('click', function() {
+			$('.userId').empty();
+			let nickname = $(this).data('user-nickname');
 			if($('.write-box').hasClass("d-none") == true) {
 				if ($('.update-box').hasClass("d-none") == true) {
-					$('.update-box').removeClass("d-none")
+					$('.userId').append(nickname);
+					$('.update-box').removeClass("d-none");
 				} else {
-					$('.update-box').addClass("d-none")
+					$('.update-box').addClass("d-none");
 				}
 			} else {
 				alert("리뷰 작성중에는 수정할수 없습니다.");

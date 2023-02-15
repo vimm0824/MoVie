@@ -10,6 +10,7 @@ header {height:80px;}
 .logo:hover {text-decoration: none}
 .my-page-number:hover {text-decoration: none}
 .my-info {height:280px; width:1100px; background-color:#e0e0e0;}
+.my-info-movie {min-height:300px; width:1100px; background-color:#e0e0e0;}
 .movie-box {min-height:800px; width:1150px; background-color: #e0e0e0;}
 .my-movie-box {height:450px; width:1100px; background-color: #e0e0e0;}
 .review-box {width:1100px; min-height:400px; background-color: #e0e0e0;}
@@ -18,7 +19,7 @@ footer {height:80px;}
 .btn-type1 {background-color:#404040; height:40px; width:100px;}
 .btn-type2 {background-color:#e0e0e0; height:40px; width:100px;}
 .btn-type3 {background-color: #bebebe; height:40px; width:100px;}
-
+.reveiw-table {width:1000px; margin:auto;}
 
 
 .myform fieldset{

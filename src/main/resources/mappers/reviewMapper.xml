@@ -50,4 +50,66 @@
  			`movieCd` = #{movieCd}
  		ORDER BY `id` DESC
  	</select>
+ 	
+ 	<select id="selectReviewListByUserIdOrderByPoint" resultType="com.MoVie.review.model.Review">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `movieCd`
+ 			, `point`
+ 			, `review`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`review`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		ORDER BY `point` DESC
+ 	</select>
+ 	
+ 	<select id="selectReviewListByUserIdPoint" resultType="com.MoVie.review.model.Review">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `movieCd`
+ 			, `point`
+ 			, `review`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`review`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND 
+ 			`point` = #{point}
+ 		ORDER BY `id` DESC
+ 		LIMIT 5
+ 	</select>
+ 	
+ 	<select id="selectReviewListByUserId" resultType="com.MoVie.review.model.Review">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `movieCd`
+ 			, `point`
+ 			, `review`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`review`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		ORDER BY `id` DESC
+ 	</select>
+ 	
+ 	<select id="selectReviewCountByMovieCdPoint" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`review`
+ 		WHERE
+ 			`movieCd` = #{movieCd}
+ 			AND
+ 			`point` = #{point}
+ 	</select>
  </mapper>

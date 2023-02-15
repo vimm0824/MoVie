@@ -27,7 +27,7 @@
 				<div class="col-10 d-flex align-items-center justify-content-between mt-3">
 					<div class="d-flex justify-content-around col-6 mr-4">
 						<a href="#" class="my-page-number text-dark">
-							<div class="text-center mb-2">3000</div>
+							<div class="text-center mb-2">${movie.pointCount}</div>
 							<div class="ml-1">추천</div>
 						</a>
 						<a href="#" class="my-page-number text-dark">
@@ -44,15 +44,3 @@
 	</div>
 	</c:forEach>
 </div>
-
-<script>
-	$(document).ready(function() {
-		/*$('#search-b tn').on('click', function(e) {
-			//alert(1234);
-			e.preventDefault();	
-			let search = $('#search').val().trim();
-			
-			location.href = "/search/movie_view?search=" + search;
-		}); */
-	});
-</script>

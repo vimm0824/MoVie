@@ -1,9 +1,12 @@
 package com.MoVie.review.model;
 
+import com.MoVie.user.model.User;
+
 public class ReviewView {
 
 	private Review review;
-	private String nickname;
+	private User user;
+	
 	//
 	public Review getReview() {
 		return review;
@@ -11,11 +14,10 @@ public class ReviewView {
 	public void setReview(Review review) {
 		this.review = review;
 	}
-	public String getNickname() {
-		return nickname;
+	public User getUser() {
+		return user;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
 }

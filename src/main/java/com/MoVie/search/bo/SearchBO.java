@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.MoVie.api.BoxOfficeAPI;
 import com.MoVie.api.NaverSearchAPI;
+import com.MoVie.review.bo.ReviewBO;
 
 @Service
 public class SearchBO {
 
 	@Autowired
 	private BoxOfficeAPI boxOfficeAPI;
-	
 	@Autowired
 	private NaverSearchAPI naverSearchAPI;
 	
@@ -65,6 +65,7 @@ public class SearchBO {
 						actor = actor.substring(0, actor.length() - 1);
 					}
 					input.put("actor", actor);
+					//input
 					break;
 				}
 			}
@@ -85,8 +86,6 @@ public class SearchBO {
 		String movieNm = (String) result.get("movieNm");
 		String openDt = (String) result.get("openDt");
 		
-		// 날짜를 yyyy/MM/dd로 바꾸기 위한 코드
-		// 19990101
 		String year = "";
 		if (openDt.length() > 0) {
 			String day = openDt.substring(6);

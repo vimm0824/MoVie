@@ -45,7 +45,7 @@
 			</div>
 			<div class="col-12 h-75 d-flex align-items-center justify-content-around">
 				<a href="#" class="my-page-number text-dark">
-					<div class="text-center mb-2">100</div>
+					<div class="text-center mb-2">${result.reviewCount}</div>
 					<div>내가 본 영화</div>
 				</a>
 				<a href="#" class="my-page-number text-dark">

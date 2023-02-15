@@ -94,7 +94,7 @@ public class UserRestController {
 			session.setAttribute("loginId", user.getLoginId());
 			session.setAttribute("nickname", user.getNickname());
 		} else {
-			result.put("code", 1);
+			result.put("code", 500);
 			result.put("result", "아이디와 비밀번호가 잘못되었습니다.");
 		}
 		
@@ -188,7 +188,7 @@ public class UserRestController {
 		result.put("code", 1);
 		result.put("result", "수정이 완료되었습니다.");
 		
-		if (nickname != null) {
+		if (nickname.isEmpty() == false) {
 			session.setAttribute("nickname", nickname);
 		}
 		

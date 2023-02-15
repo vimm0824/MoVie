@@ -21,4 +21,16 @@ public interface ReviewDAO {
 			@Param("movieCd") int movieCd);
 	
 	public List<Review> selectReviewListByMovieCd(int movieCd);
+	
+	public List<Review> selectReviewListByUserId(int userId);
+	
+	public List<Review> selectReviewListByUserIdOrderByPoint(int userId);
+
+	public List<Review> selectReviewListByUserIdPoint(
+			@Param("userId") int userId,
+			@Param("point") int point);
+	
+	public int selectReviewCountByMovieCdPoint(
+			@Param("movieCd") int movieCd,
+			@Param("point") int point);
 }
