@@ -77,6 +77,11 @@ public class SearchBO {
 		return list;
 	}
 	
+	/**
+	 * 영화 디테일
+	 * @param movieCd
+	 * @return
+	 */
 	public Map<String, Object> getDetailMovie(String movieCd) {
 		LinkedHashMap<String, Object> result = boxOfficeAPI.getDetailMovie(movieCd);
 		
@@ -104,8 +109,6 @@ public class SearchBO {
 		tempList = (List<LinkedHashMap<String, Object>>) result.get("genres");
 		tempMap = tempList.get(0);
 		result.put("genreNm", tempMap.get("genreNm"));
-		
-		
 		
 		List<LinkedHashMap<String, String>> nsAPI = naverSearchAPI.getSearchMovieInfo(movieNm);
 		

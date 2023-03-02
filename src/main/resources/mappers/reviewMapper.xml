@@ -112,4 +112,26 @@
  			AND
  			`point` = #{point}
  	</select>
+ 	
+ 	<delete id="deleteReviewByUserIdByMovieCd" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`review`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND
+ 			`movieCd` = #{movieCd}
+ 	</delete>
+ 	
+ 	<update id="updateReviewByUserIdMovieCd" parameterType="map">
+ 		UPDATE `review`
+ 		SET
+ 			`point` = #{point}
+ 			, `review` = #{review}
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND
+ 			`movieCd` = #{movieCd}
+ 	</update>
  </mapper>

@@ -15,7 +15,7 @@
 	</c:if>
 	<c:if test="${not empty userId}">
 	<a href="/main"class="mr-2">
-		<img alt="" src="https://cdn.pixabay.com/photo/2013/07/12/12/56/home-146585_1280.png"
+		<img alt="" src="https://cdn.pixabay.com/photo/2014/04/03/00/38/house-308936_1280.png"
 		width="40" height="40">
 	</a> 
 	<a href="/mypage/mypage_view?userId=${userId}" class="btn btn-type1 text-white">${nickname}</a>

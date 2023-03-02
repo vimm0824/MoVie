@@ -28,9 +28,17 @@
  		)
  	</insert>
  	
- 	<select id="existLoginId" resultType="int">
+ 	<select id="existLoginId" resultType="com.MoVie.user.model.User">
  		SELECT
- 			COUNT(*)
+ 			`id`
+ 			, `loginId`
+ 			, `password`
+ 			, `name`
+ 			, `nickname`
+ 			, `email`
+ 			, `profileUrl`
+ 			, `createdAt`
+ 			, `updatedAt`
  		FROM
  			`user`
  		WHERE

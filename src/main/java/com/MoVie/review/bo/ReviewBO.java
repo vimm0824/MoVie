@@ -113,4 +113,11 @@ public class ReviewBO {
 		return reviewDAO.selectReviewCountByMovieCdPoint(movieCd, point);
 	}
 	
+	public void deleteReviewByUserIdByMovieCd(int userId, int movieCd) {
+		reviewDAO.deleteReviewByUserIdByMovieCd(userId, movieCd);
+	}
+	
+	public void updateReviewByUserIdMovieCd(int userId, int movieCd, int point, String review) {
+		reviewDAO.updateReviewByUserIdMovieCd(userId, movieCd, point, review);
+	}
 }

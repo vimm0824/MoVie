@@ -62,6 +62,7 @@ public class SearchController {
 		Map<String, Object> result = searchBO.getDetailMovie(movieCd);
 		int pointCount = reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf((String)result.get("movieCd")), 5) +
 				reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf((String)result.get("movieCd")), 4);
+		int wishCount = wishBO.countWishByMovieCd(Integer.valueOf((String)result.get("movieCd")));
 		List<ReviewView> reviewList = reviewBO.getReviewViewListByMovieCd(Integer.parseInt(movieCd));
 		boolean wish = false;
 		
@@ -73,6 +74,7 @@ public class SearchController {
 		model.addAttribute("result", result);
 		model.addAttribute("wish", wish);
 		model.addAttribute("pointCount", pointCount);
+		model.addAttribute("wishCount", wishCount);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("viewName", "search/detailMovie");
 		return "template/layout";

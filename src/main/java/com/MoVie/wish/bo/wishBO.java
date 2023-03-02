@@ -22,4 +22,12 @@ public class WishBO {
 	public boolean haveWishByUserIdMovieCd(int userId, int movieCd) {
 		return wishDAO.selectWishByUserIdMovieCd(userId, movieCd) > 0 ? true : false;
 	}
+	
+	public int countWishByUserId(int userId) {
+		return wishDAO.countWishByUserId(userId);
+	}
+	
+	public int countWishByMovieCd(int movieCd) {
+		return wishDAO.countWishByMovieCd(movieCd);
+	}
 }

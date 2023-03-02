@@ -33,4 +33,14 @@ public interface ReviewDAO {
 	public int selectReviewCountByMovieCdPoint(
 			@Param("movieCd") int movieCd,
 			@Param("point") int point);
+	
+	public void deleteReviewByUserIdByMovieCd(
+			@Param("userId") int userId,
+			@Param("movieCd") int movieCd);
+	
+	public void updateReviewByUserIdMovieCd(
+			@Param("userId") int userId, 
+			@Param("movieCd") int movieCd, 
+			@Param("point") int point, 
+			@Param("review") String review);
 }

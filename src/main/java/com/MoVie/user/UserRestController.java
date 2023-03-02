@@ -36,14 +36,20 @@ public class UserRestController {
 			){
 		Map<String, Object> result = new HashMap<>();
 		
-		int row = userBO.existLoginId(loginId);
+		User user = userBO.existLoginId(loginId);
 		
-		if (row > 0) { // 중복
+//		int row =  0;
+//		if (user != null) {
+//			row = user.getId();
+//		}
+		if (user != null) { // 중복
 			result.put("code", 1);
 			result.put("result", false);
-		} else { // 사용가능
+			result.put("userId", user.getId());
+		} else { // 없는 아이디
 			result.put("code", 1);
 			result.put("result", true);
+			result.put("userId", 0);
 		}
 		
 		return result;

@@ -38,4 +38,22 @@
  			, NOW()
  		)
  	</insert>
+ 	
+ 	<select id="countWishByUserId" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`wish`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
+ 	
+ 	<select id="countWishByMovieCd" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`wish`
+ 		WHERE
+ 			`movieCd` = #{movieCd}
+ 	</select>
  </mapper>

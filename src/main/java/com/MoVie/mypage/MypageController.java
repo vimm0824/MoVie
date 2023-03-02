@@ -67,7 +67,6 @@ public class MypageController {
 			@RequestParam("userId") int userId,
 			Model model
 			) {
-		//List<Map<String, Object>> reviewMovie = reviewBO.getReviewListByUserIdOrderByPoint(userId);
 		
 		List<Map<String, Object>> pointFive = reviewBO.getReviewListsByUserIdPoint(userId, 5);
 		List<Map<String, Object>> pointFour = reviewBO.getReviewListsByUserIdPoint(userId, 4);
@@ -81,14 +80,6 @@ public class MypageController {
 		result.add(pointThree);
 		result.add(pointTwo);
 		result.add(pointOne);
-		
-//		model.addAttribute("reviewList", reviewMovie);
-		
-//		model.addAttribute("pointFive", pointFive);
-//		model.addAttribute("pointFour", pointFour);
-//		model.addAttribute("pointThree", pointThree);
-//		model.addAttribute("pointTwo", pointTwo);
-//		model.addAttribute("pointOne", pointOne);
 		
 		model.addAttribute("result", result);
 		return "mypage/mypagePoint";

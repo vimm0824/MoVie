@@ -20,7 +20,7 @@ public class UserBO {
 		return userDAO.insertUser(loginId, password, email, name, nickname);
 	}
 	
-	public int existLoginId(String loginId) {
+	public User existLoginId(String loginId) {
 		return userDAO.existLoginId(loginId);
 	}
 	

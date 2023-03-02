@@ -22,7 +22,7 @@
 					<div class="col-12 d-flex justify-content-center">
 					</div>
 					<div class="d-flex justify-content-center align-items-end">
-						<a href="#" class="btn btn-type1 text-white">예매하기</a>
+						<a href="/ticket/select_plan_view" class="btn btn-type1 text-white">예매하기</a>
 						<a href="/search/detail_movie_view?movieCd=${movie.movieCd}" class="btn btn-type2 text-dark" data-movie-id="${movie.movieCd}">상세보기</a>
 					</div>
 				</div>

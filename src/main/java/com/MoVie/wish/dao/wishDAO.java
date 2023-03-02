@@ -17,4 +17,8 @@ public interface WishDAO {
 	public int insertWishByUserIdMovieCd(
 			@Param("userId") int userId,
 			@Param("movieCd") int movieCd);
+	
+	public int countWishByUserId(int userId);
+	
+	public int countWishByMovieCd(int movieCd);
 }

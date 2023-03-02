@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import com.MoVie.follow.bo.FollowBO;
 import com.MoVie.mypage.model.UserCardView;
 import com.MoVie.review.bo.ReviewBO;
+import com.MoVie.ticket.bo.TicketBO;
 import com.MoVie.user.bo.UserBO;
 import com.MoVie.user.model.User;
+import com.MoVie.wish.bo.WishBO;
 
 @Service
 public class MypageBO {
@@ -18,6 +20,10 @@ public class MypageBO {
 	private FollowBO followBO;
 	@Autowired
 	private ReviewBO reviewBO;
+	@Autowired
+	private WishBO wishBO;
+	@Autowired
+	private TicketBO ticketBO;
 	
 	public UserCardView generateCard(
 			int pageUserId, int userId) {
@@ -34,6 +40,10 @@ public class MypageBO {
 		
 		//reviewCount
 		card.setReviewCount(reviewBO.getCountReviewByUserId(pageUserId));
+		//wishCount
+		card.setWishCount(wishBO.countWishByUserId(pageUserId));
+		//ticketCount
+		card.setTicketCount(ticketBO.countTicketByUserId(pageUserId));
 		//followCount
 		card.setFollowCount(followBO.countFollowByFollowId(pageUserId));
 		//followingCount

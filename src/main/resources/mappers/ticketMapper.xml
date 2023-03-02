@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.MoVie.ticket.dao.TicketDAO">
+ 	<insert id="insertTicket" parameterType="map">
+ 		INSERT INTO `ticket`
+ 		(
+ 			`userId`
+ 			, `movieCd`
+ 			, `plan`
+ 			, `seat`
+ 			, `gift`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{movieCd}
+ 			, #{plan}
+ 			, #{seat}
+ 			, false
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	<select id="selectTicketByMovieCd" resultType="com.MoVie.ticket.model.Ticket">
+ 		SELECT 
+ 			`id`
+ 			, `userId`
+ 			, `movieCd`
+ 			, `plan`
+ 			, `seat`
+ 			, `gift`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`ticket`
+ 		WHERE
+ 			`movieCd` = #{movieCd}
+ 			AND
+ 			`plan` = #{plan}
+ 	</select>
+ 	
+ 	<select id="countTicketByUserId" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`ticket`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
+
+ 	<select id="selectTicketByUserId" resultType="com.MoVie.ticket.model.Ticket">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `movieCd`
+ 			, `plan`
+ 			, `seat`
+ 			, `gift`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`ticket`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		ORDER BY `id` DESC
+ 	</select>
+ 	
+ 	<delete id="deleteTicketByIdUserId" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`ticket`
+ 		WHERE
+ 			`id` = #{id}
+ 			AND
+ 			`userId` = #{userId}
+ 	</delete>
+ 	
+ 	<select id="selectTicketById" resultType="com.MoVie.ticket.model.Ticket">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `movieCd`
+ 			, `plan`
+ 			, `seat`
+ 			, `gift`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`ticket`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
+ 	
+ 	<delete id="deleteTicket" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`ticket`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND
+ 			`movieCd` = #{movieCd}
+ 			AND
+ 			`seat` = #{seat}
+ 			AND
+ 			`plan` = #{plan}
+ 	</delete>
+ 	
+ 	<select id="selectTicket" resultType="com.MoVie.ticket.model.Ticket">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `movieCd`
+ 			, `plan`
+ 			, `seat`
+ 			, `gift`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`ticket`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND
+ 			`movieCd` = #{movieCd}
+ 			AND
+ 			`seat` = #{seat}
+ 			AND
+ 			`plan` = #{plan}
+ 	</select>
+ 	
+ 	<update id="updateTikcetGiftById" parameterType="int">
+ 		UPDATE `ticket`
+ 		SET
+ 			`gift` = true
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
+ 	
+ 	<update id="updateTikcetGiftFalseById" parameterType="int">
+ 		UPDATE `ticket`
+ 		SET
+ 			`gift` = false
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
+ </mapper>

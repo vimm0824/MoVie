@@ -49,11 +49,11 @@
 					<div>내가 본 영화</div>
 				</a>
 				<a href="#" class="my-page-number text-dark">
-					<div class="text-center mb-2">100</div>
+					<div class="text-center mb-2">${result.wishCount}</div>
 					<div>보고싶은 영화</div>
 				</a>
 				<a href="#" class="my-page-number text-dark">
-					<div class="text-center mb-2">3</div>
+					<div class="text-center mb-2">${result.ticketCount}</div>
 					<div>보유티켓</div>
 				</a>
 				<a href="#" class="my-page-number text-dark">

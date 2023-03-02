@@ -15,7 +15,7 @@ public interface UserDAO {
 			@Param("name") String name,
 			@Param("nickname") String nickname);
 	
-	public int existLoginId(String loginId);
+	public User existLoginId(String loginId);
 	
 	public User selecetUserByLoginIdPassword(
 			@Param("loginId") String loginId, 

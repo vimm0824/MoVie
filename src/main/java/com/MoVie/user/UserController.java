@@ -20,13 +20,23 @@ public class UserController {
 	private UserBO userBO;
 	
 	@GetMapping("/sign_in_view")
-	public String signIn(Model model) {
+	public String signIn(Model model,
+			HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId != null) {
+			return "redirect:/main";
+		}
 		model.addAttribute("viewName", "user/signIn");
 		return "template/layout";
 	}
 	
 	@GetMapping("/sign_up_view")
-	public String signUp(Model model) {
+	public String signUp(Model model,
+			HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId != null) {
+			return "redirect:/main";
+		}
 		model.addAttribute("viewName", "user/signUp");
 		return "template/layout";
 	}

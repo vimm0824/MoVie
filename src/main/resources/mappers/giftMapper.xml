@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.MoVie.gift.dao.GiftDAO">
+ 	<insert id="insertGift" parameterType="map">
+ 		INSERT INTO `gift`
+ 		(
+ 			`receiverId`
+ 			, `ticketId`
+ 			, `message`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{receiverId}
+ 			, #{ticketId}
+ 			, #{message}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selectGiftListByReceiverId" resultType="com.MoVie.gift.model.Gift">
+ 		SELECT
+ 			`id`
+ 			, `receiverId`
+ 			, `ticketId`
+ 			, `message`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`gift`
+ 		WHERE
+ 			`receiverId` = #{receiverId}
+ 	</select>
+ 	
+ 	<select id="selectGiftByIdReceiverId" resultType="com.MoVie.gift.model.Gift">
+ 		SELECT
+ 			`id`
+ 			, `receiverId`
+ 			, `ticketId`
+ 			, `message`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`gift`
+ 		WHERE
+ 			`id` = #{id}
+ 			AND
+ 			`receiverId` = #{receiverId}
+ 	</select>
+ 	
+ 	<delete id="deleteGiftByIdReceiverId" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`gift`
+ 		WHERE
+ 			`id` = #{id}
+ 			AND
+ 			`receiverId` = #{receiverId}
+ 	</delete>
+ </mapper>

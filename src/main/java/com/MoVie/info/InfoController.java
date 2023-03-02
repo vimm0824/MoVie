@@ -26,18 +26,12 @@ public class InfoController {
 
 	@Autowired
 	private InfoBO infoBO;
-	@Autowired
-	private NaverSearchAPI api;
-	@Autowired
-	private BoxOfficeAPI bApi;
 	
 	@GetMapping("/boxoffice_view")
 	public String boxoffice(Model model) {
-		//List<Map<String, String>> result = infoBO.getBoxOfficeView();
 		List<Map<String, Object>> list = infoBO.getBoxOfficeView();
 		
 		model.addAttribute("result", list);
-		//model.addAttribute("list", list);
 		model.addAttribute("viewName", "info/boxoffice");
 		return "template/layout";
 	}

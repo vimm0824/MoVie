@@ -8,11 +8,11 @@
 	<li class="nav-item font-weight-bold"><a href="/mypage/mypage_view?userId=${userId}"
 		class="nav-link text-dark h4 lead">My-Page</a></li>
 	<li class="nav-item font-weight-bold"><a href="#"
-		class="nav-link text-dark h4 lead">My-Follow</a></li>
-	<li class="nav-item font-weight-bold"><a href="#"
 		class="nav-link text-dark h4 lead">Wish-MoVie</a></li>
-	<li class="nav-item font-weight-bold"><a href="#"
+	<li class="nav-item font-weight-bold"><a href="/ticket/select_plan_view"
 		class="nav-link text-dark h4 lead">Ticketing</a></li>
-	<li class="nav-item font-weight-bold"><a href="#"
+	<li class="nav-item font-weight-bold"><a href="/ticket/ticket_box_view?userId=${userId}"
 		class="nav-link text-dark h4 lead">Ticket-Box</a></li>
+	<li class="nav-item font-weight-bold"><a href="/gift/gift_box_view?userId=${userId}"
+		class="nav-link text-dark h4 lead">Gift-Box</a></li>
 </ul>

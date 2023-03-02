@@ -34,12 +34,8 @@
 							<div class="ml-1">추천</div>
 						</a>
 						<a href="#" class="my-page-number text-dark">
-							<div class="text-center mb-2">1000</div>
+							<div class="text-center mb-2">${wishCount}</div>
 							<div>보고싶어요</div>
-						</a>
-						<a href="#" class="my-page-number text-dark">
-							<div class="text-center mb-2">4.3</div>
-							<div>평균평점</div>
 						</a>
 					</div>
 					<div>
@@ -88,26 +84,27 @@
 	<div class="update-box d-none">
 	<h2 class="pl-3">리뷰수정</h2>
 	<div class="d-flex justify-content-around align-items-center border border-secondary border-3 mb-3 ml-4">
-		<div class="h3 ml-3 userId"></div>
+		<div class="h3 ml-3 userNickname"></div>
 		<div class="myform">
 			<fieldset>
-				<input type="radio" name="reviewStar" value="5" id="rate1" class="starValue">
-				<label for="rate1">★</label>
-				<input type="radio" name="reviewStar" value="4" id="rate2" class="starValue">
-				<label for="rate2">★</label>
-				<input type="radio" name="reviewStar" value="3" id="rate3" class="starValue">
-				<label for="rate3">★</label>
-				<input type="radio" name="reviewStar" value="2" id="rate4" class="starValue">
-				<label for="rate4">★</label>
-				<input type="radio" name="reviewStar" value="1" id="rate5" class="starValue">
-				<label for="rate5">★</label>
+				<input type="radio" name="pointStar" value="5" id="rate6" class="starValue">
+				<label for="rate6">★</label>
+				<input type="radio" name="pointStar" value="4" id="rate7" class="starValue">
+				<label for="rate7">★</label>
+				<input type="radio" name="pointStar" value="3" id="rate8" class="starValue">
+				<label for="rate8">★</label>
+				<input type="radio" name="pointStar" value="2" id="rate9" class="starValue">
+				<label for="rate9">★</label>
+				<input type="radio" name="pointStar" value="1" id="rate10" class="starValue">
+				<label for="rate10">★</label>
 			</fieldset>
 			<div class="d-flex justify-content-center notice">
 				<small class="text-center">4점, 5점은 추천</small>
 			</div>
 		</div>
-		<textarea rows="5" class="form-control col-6"></textarea>
-		<button type="button" class="btn btn-type1 text-white">작성</button>
+		<textarea rows="5" id="update-review" class="form-control col-6"></textarea>
+		<button type="button" id="review-update" class="btn btn-type1 text-white">작성</button>
+		<div id="review-userId" class="d-none"></div>
 	</div>
 	</div>
 	
@@ -135,16 +132,17 @@
 						</c:forEach>
 					</td>
 					<td class="col-3">
-						${review.review.review}
+						<span>${review.review.review}</span>
 					</td>
 					<c:if test="${review.user.id eq userId}">
 					<td class="col-3">
-						<button type="button" class="btn btn-type1 text-white update-btn"
-						 data-user-id="${review.user.id}" data-user-nickname="${review.user.nickname}">
+						<button type="button" id="update-btn" class="btn btn-type1 text-white"
+						 data-user-id="${review.user.id}" data-user-nickname="${review.user.nickname}"
+						 data-review-text="${review.review.review}">
 							<img alt="수정" src="https://cdn.pixabay.com/photo/2014/04/02/11/17/pencil-305800_1280.png"
 								width="20" height="30">
 						</button>
-						<button type="button" class="btn btn-type3 text-dark">
+						<button type="button" id="delete-btn" class="btn btn-type3 text-dark" data-user-id="${review.user.id}">
 							<img alt="삭제" src="https://cdn.pixabay.com/photo/2014/03/25/16/59/cancel-297784_1280.png"
 								width="30" height="30">
 						</button>
@@ -160,6 +158,7 @@
 <script>
 	$(document).ready(function() {
 		let point = 0;
+		let movieCd = ${result.movieCd};
 		// 별점 뷰 구현
 		$('input[name=reviewStar]').on('change', function() {
 			point = $('input[name=reviewStar]:checked').val();
@@ -171,7 +170,7 @@
 				return false;
 			}
 			let review = $('#review').val();
-			let movieCd = ${result.movieCd};
+			//let movieCd = ${result.movieCd};
 			
 			$.ajax({
 				type:"post"
@@ -190,6 +189,7 @@
 				}
 			});
 		});
+		//end
 		
 		// 리뷰작성 버튼
 		$('#review-btn').on('click', function() {
@@ -203,14 +203,21 @@
 				alert("리뷰 수정중에는 작성할수 없습니다.");
 			}
 		});
+		//end
 		
 		// 리뷰수정 버틎
-		$('.update-btn').on('click', function() {
-			$('.userId').empty();
+		$('#update-btn').on('click', function() {
+			$('.userNickname').empty();
+			$('.review-userId').empty();
+			$('.userNickname').empty();
 			let nickname = $(this).data('user-nickname');
+			let userId = $(this).data('user-id');
+			let review = $(this).data('review-text');
 			if($('.write-box').hasClass("d-none") == true) {
 				if ($('.update-box').hasClass("d-none") == true) {
-					$('.userId').append(nickname);
+					$('.userNickname').append(nickname);
+					$('#review-userId').append(userId);
+					$('#update-review').append(review);
 					$('.update-box').removeClass("d-none");
 				} else {
 					$('.update-box').addClass("d-none");
@@ -219,11 +226,39 @@
 				alert("리뷰 작성중에는 수정할수 없습니다.");
 			}
 		});
+		//end
 		
+		// 리뷰수정 별점
+		$('input[name=pointStar]').on('change', function() {
+			point = $('input[name=pointStar]:checked').val();
+		});
+		// 리뷰수정 -> 수정 버튼
+		$('#review-update').on('click', function() {
+			let userId = $('#review-userId').text().trim();
+			let review = $('#update-review').val();
+			//alert(review);
+			$.ajax({
+				type:"post"
+				, url:"/review/update_review"
+				, data:{"userId":userId,"movieCd":movieCd,"point":point,"review":review}
+			
+				, success:function(data) {
+					if (data.code == 1) {
+						location.reload();
+					} else {
+						alert(data.result);
+					}
+				}
+				, error:function(e) {
+					alert("ajax error!!!" + e);
+				}
+			});
+		});
+		//end
+		
+		// 보고싶어요 버튼
 		$('#wish-btn').on('click', function() {
-			let movieCd = $(this).data('movie-code');
-			
-			
+			//let movieCd = $(this).data('movie-code');
 			$.ajax({
 				type:"get"
 				, url:"/wish/wish"
@@ -241,5 +276,33 @@
 				}
 			});
 		});
+		//end
+		
+		// 리뷰삭제 버튼
+		$('#delete-btn').on('click', function() {
+			//let movieCd = $(this).data('movie-cd');
+			let userId = $(this).data('user-id');
+			if (userId == null) {
+				alert("로그인 후 이용해주세요.");
+			}
+			
+			$.ajax({
+				type:"delete"
+				, url:"/review/delete_review"
+				, data:{"userId":userId,"movieCd":movieCd}
+			
+				, success:function(data) {
+					if (data.code == 1) {
+						location.reload();
+					} else {
+						alert(data.result);
+					}
+				}
+				, error:function(e) {
+					alert("ajax error!!!" + e);
+				}
+			});
+		});
+		//end
 	});
 </script>
