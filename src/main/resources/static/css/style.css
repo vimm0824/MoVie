@@ -26,6 +26,7 @@ header {height:80px;}
 .seat-box:hover {background-color: #404040;}
 .seat-num:hover {text-decoration: none;}
 .movie-view {height:500px; width:400px; background-color: #404040;}
+.my-follow-box {min-height:500px; width:450px; background-color: #bebebe;}
 footer {height:80px;}
 .btn-type1 {background-color:#404040; height:40px; width:100px;}
 .btn-type2 {background-color:#e0e0e0; height:40px; width:100px;}

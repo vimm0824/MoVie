@@ -1,7 +1,11 @@
 package com.MoVie.wish.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.MoVie.wish.model.Wish;
 
 @Repository
 public interface WishDAO {
@@ -21,4 +25,6 @@ public interface WishDAO {
 	public int countWishByUserId(int userId);
 	
 	public int countWishByMovieCd(int movieCd);
+	
+	public List<Wish> selectReviewListByUserId(int userId);
 }

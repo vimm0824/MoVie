@@ -42,7 +42,7 @@ public class TicketController {
 		Integer userId = (Integer)session.getAttribute("userId");
 		if (userId == null) {
 			return "redirect:/user/sign_in_view";
-		}
+		} 
 		List<LinkedHashMap<String, String>> result = boxOfficeAPI.getDailyBoxOffice();
 		model.addAttribute("result", result);
 		model.addAttribute("viewName", "ticket/selectPlan");

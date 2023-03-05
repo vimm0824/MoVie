@@ -44,30 +44,34 @@
 				</div>
 			</div>
 			<div class="col-12 h-75 d-flex align-items-center justify-content-around">
-				<a href="#" class="my-page-number text-dark">
+				<a href="/mypage/mypage_view?userId=${result.user.id}" class="my-page-number text-dark">
 					<div class="text-center mb-2">${result.reviewCount}</div>
 					<div>내가 본 영화</div>
 				</a>
-				<a href="#" class="my-page-number text-dark">
+				<a href="/wish/wish_movie_view?userId=${result.user.id}" class="my-page-number text-dark">
 					<div class="text-center mb-2">${result.wishCount}</div>
 					<div>보고싶은 영화</div>
 				</a>
+				<c:if test="${result.user.id eq userId}">
 				<a href="#" class="my-page-number text-dark">
 					<div class="text-center mb-2">${result.ticketCount}</div>
 					<div>보유티켓</div>
 				</a>
-				<a href="#" class="my-page-number text-dark">
+				</c:if>
+				<a href="/follow/follow_view?userId=${result.user.id}" class="my-page-number text-dark">
 					<div class="text-center mb-2">${result.followCount}</div>
 					<div>팔로우</div>
 				</a>
-				<a href="#" class="my-page-number text-dark">
+				<a href="/follow/follow_view?userId=${result.user.id}" class="my-page-number text-dark">
 					<div class="text-center mb-2">${result.followingCount}</div>
 					<div>팔로잉</div>
 				</a>
 				<div>
 				<c:choose>
 					<c:when test="${result.filedFollow eq false }">
+					<c:if test="${userId ne result.user.id }">
 					<button type="button" id="follow-btn" data-follow-id="${result.user.id}" class="btn btn-type1 text-white">팔로우</button>
+					</c:if>
 					</c:when>
 					<c:otherwise>
 					<button type="button" id="follow-btn" data-follow-id="${result.user.id}" class="btn btn-type3 text-dark">팔로우 취소</button>

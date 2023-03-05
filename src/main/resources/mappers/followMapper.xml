@@ -51,9 +51,32 @@
  		WHERE
  			`userId` = #{userId}
  	</select>
+ 	
  	<select id="countFollowByFollowId" resultType="int">
  		SELECT
  			COUNT(*)
+ 		FROM
+ 			`follow`
+ 		WHERE
+ 			`followId` = #{followId}
+ 	</select>
+ 	
+ 	<select id="selectFollowListFollowingByid" resultType="com.MoVie.follow.model.Follow">
+ 		SELECT
+ 			`userId`
+ 			, `followId`
+ 			, `createdAt`
+ 		FROM
+ 			`follow`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
+ 	
+ 	<select id="selectFollowListByid" resultType="com.MoVie.follow.model.Follow">
+ 		SELECT
+ 			`userId`
+ 			, `followId`
+ 			, `createdAt`
  		FROM
  			`follow`
  		WHERE

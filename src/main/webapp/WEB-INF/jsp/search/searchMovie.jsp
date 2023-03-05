@@ -5,9 +5,7 @@
 	<div class="col-12 text-center">
 		<a href="/main" class="logo text-dark">MoVie</a>
 	</div>
-	<!-- <div class="col-12 pt-2 d-flex justify-content-center mb-3"> -->
 	<jsp:include page="../include/searchInput.jsp" />
-	<!-- </div> -->
 	<c:forEach var="movie" items="${result}">
 	<div class="d-flex my-movie-box mb-4">
 			<div class="movie-poster p-4 ml-3 d-flex align-items-center">
@@ -30,7 +28,7 @@
 							<div class="text-center mb-2">${movie.pointCount}</div>
 							<div class="ml-1">추천</div>
 						</a>
-						<a href="#" class="my-page-number text-dark">
+						<a href="#" class="my-page-number text-dark">02
 							<div class="text-center mb-2">${movie.wishCount}</div>
 							<div>보고싶어요</div>
 						</a>

@@ -56,4 +56,15 @@
  		WHERE
  			`movieCd` = #{movieCd}
  	</select>
+ 	
+ 	<select id="selectReviewListByUserId" resultType="com.MoVie.wish.model.Wish">
+ 		SELECT
+ 			`userId`
+ 			, `movieCd`
+ 			, `createdAt`
+ 		FROM
+ 			`wish`
+ 		WHERE
+ 			`userId` = #{userId}	
+ 	</select>
  </mapper>

@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="m-4">
-	<button type="button" id="navbar-toggler" class="border-0 bg-transparent" > 
-	<img alt=""src="https://cdn.pixabay.com/photo/2016/03/31/19/14/list-1294835_1280.png"
-		width="30" height="30">
-	</button> 
+	<!-- <button type="button" id="navbar-toggler" class="border-0 bg-transparent" > --> 
+	<a href="#" id="navbar-toggler">
+		<img alt="" src="https://cdn.pixabay.com/photo/2016/03/31/19/14/list-1294835_1280.png" width="30" height="30">
+	</a>
+	<!-- </button>  -->
 </div>
 
 <div class="m-4 d-flex">

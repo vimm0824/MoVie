@@ -6,10 +6,7 @@
 	<div class="col-12 text-center">
 		<a href="/main" class="logo text-dark">MoVie</a>
 	</div>
-	<div class="col-12 pt-2 d-flex justify-content-center mb-3">
-		<input type="text" class="form-control col-8" id="search" placeholder="영화를 입력하세요.">
-		<button type="button" class="btn btn-type1 text-white" id="search-btn">검색</button>
-	</div>
+	<jsp:include page="../include/searchInput.jsp" />
 	
 	<div class="d-flex my-movie-box mb-4"><!-- 영화 박스 -->
 			<div class="movie-poster p-4 ml-3 d-flex align-items-center">
