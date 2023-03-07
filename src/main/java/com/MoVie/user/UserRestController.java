@@ -3,6 +3,8 @@ package com.MoVie.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +19,6 @@ import com.MoVie.user.bo.UserBO;
 import com.MoVie.user.model.Certify;
 import com.MoVie.user.model.Mail;
 import com.MoVie.user.model.User;
-
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/user")

@@ -1,7 +1,8 @@
 package com.MoVie.follow;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +15,6 @@ import com.MoVie.follow.bo.FollowBO;
 import com.MoVie.follow.model.FollowCard;
 import com.MoVie.mypage.bo.MypageBO;
 import com.MoVie.mypage.model.UserCardView;
-
-import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/follow")
 @Controller

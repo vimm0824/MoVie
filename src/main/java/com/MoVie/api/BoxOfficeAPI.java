@@ -72,6 +72,7 @@ public class BoxOfficeAPI {
         return result;
 	}
 	
+	
 	public List<LinkedHashMap<String, Object>> getSearchMovie(String str) {
 			
 			String jsonString = "";
