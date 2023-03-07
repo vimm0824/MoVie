@@ -1,5 +1,7 @@
 package com.MoVie.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -36,4 +38,6 @@ public interface UserDAO {
 			@Param("id") int id,
 			@Param("nickname") String nickname,
 			@Param("profileUrl") String profileUrl);
+	
+	public List<User> selectUserListByNickname(String nickname);
 }

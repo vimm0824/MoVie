@@ -1,5 +1,7 @@
 package com.MoVie.user.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -61,5 +63,9 @@ public class UserBO {
 		}
 		
 		userDAO.updataeUserById(id, nickname, profileUrl);
+	}
+	
+	public List<User> getUserListByNickname(String nickname) {
+		return userDAO.selectUserListByNickname(nickname);
 	}
 }

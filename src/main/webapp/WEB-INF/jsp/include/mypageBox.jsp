@@ -53,7 +53,7 @@
 					<div>보고싶은 영화</div>
 				</a>
 				<c:if test="${result.user.id eq userId}">
-				<a href="#" class="my-page-number text-dark">
+				<a href="/ticket/ticket_box_view?userId=${result.user.id}" class="my-page-number text-dark">
 					<div class="text-center mb-2">${result.ticketCount}</div>
 					<div>보유티켓</div>
 				</a>

@@ -120,4 +120,21 @@
  		WHERE
  			`id` = #{id}
  	</update>
+ 	
+ 	<select id="selectUserListByNickname" parameterType="String" resultType="com.MoVie.user.model.User">
+ 		SELECT
+ 			`id`
+ 			, `loginId`
+ 			, `password`
+ 			, `name`
+ 			, `nickname`
+ 			, `email`
+ 			, `profileUrl`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`nickname` = #{nickname}
+ 	</select>
  </mapper>

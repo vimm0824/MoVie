@@ -1,5 +1,8 @@
 package com.MoVie.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,5 +67,19 @@ public class UserController {
 		return "template/layout"; 
 	}
 	
+	@GetMapping("/search_user_view")
+	public String searchUser(
+			@RequestParam(value="nickname", required=false) String nickname,
+			Model model) {
+		
+		List<User> userList = new ArrayList<>();
+		if (nickname != null) {
+			userList = userBO.getUserListByNickname(nickname);
+			model.addAttribute("userList", userList);
+		}
+		
+		model.addAttribute("viewName", "user/searchUser");
+		return "template/layout";
+	}
 	
 }

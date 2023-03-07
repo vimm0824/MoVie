@@ -49,6 +49,8 @@
  			`ticket`
  		WHERE
  			`userId` = #{userId}
+ 			AND
+ 			`gift` = false
  	</select>
 
  	<select id="selectTicketByUserId" resultType="com.MoVie.ticket.model.Ticket">
