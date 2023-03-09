@@ -11,9 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.MoVie.api.BoxOfficeAPI;
 import com.MoVie.api.NaverSearchAPI;
-import com.MoVie.api.model.DailyBoxOffice;
-import com.MoVie.api.model.NaverSearch;
-import com.MoVie.info.model.BoxOfficeView;
 
 @Service
 public class InfoBO {

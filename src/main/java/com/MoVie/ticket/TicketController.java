@@ -3,7 +3,6 @@ package com.MoVie.ticket;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,11 +76,8 @@ public class TicketController {
 			Model model) {
 		 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		 //2023년 02월 21일 화요일 16:42~18:46
-		 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
-		 SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy년 MM월 dd일 E요일 HH:mm");
 		 
 		 Calendar time = Calendar.getInstance();
-		 Date now = Calendar.getInstance().getTime();
 		 time.set(Calendar.HOUR_OF_DAY, 9);
 		 time.set(Calendar.MINUTE, 0);
 		 // 담을 시간

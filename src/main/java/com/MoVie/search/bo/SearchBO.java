@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.MoVie.api.BoxOfficeAPI;
 import com.MoVie.api.NaverSearchAPI;
-import com.MoVie.review.bo.ReviewBO;
 
 @Service
 public class SearchBO {
