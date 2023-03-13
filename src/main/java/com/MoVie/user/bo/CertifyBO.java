@@ -86,7 +86,7 @@ public class CertifyBO {
 			// 인증번호 생성시간
 			Date createdAt = certify.getCreatedAt();
 			
-			// BO - 생성 < 5분 이여야 OK
+			// BO - 생성 < 3분 이여야 OK
 			long minLong = (now.getTime() - createdAt.getTime()) / 1000;
 			int min = Long.valueOf(minLong).intValue();
 			if (min < 180) {

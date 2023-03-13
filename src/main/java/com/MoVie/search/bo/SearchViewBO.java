@@ -27,13 +27,17 @@ public class SearchViewBO {
 		Map<String, Object> tempMap = new HashMap<>();
 		
 		for (Map<String, Object> movie : tempList) {
-			int pointCount = reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf((String)movie.get("movieCd")), 5) +
-					reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf((String)movie.get("movieCd")), 4);
-			tempMap = movie;
-			tempMap.put("pointCount", pointCount);
-			int wishCount = wishBO.countWishByMovieCd(Integer.valueOf((String)movie.get("movieCd")));
-			tempMap.put("wishCount", wishCount);
-			result.add(tempMap);
+			String movieCd = (String)movie.get("movieCd");
+			boolean strOk = movieCd.matches(".*[a-zA-Z].*");
+			if (strOk == false) {
+				int pointCount = reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf(movieCd), 5) +
+						reviewBO.getReviewCountByMovieCdPoint(Integer.valueOf(movieCd), 4);
+				tempMap = movie;
+				tempMap.put("pointCount", pointCount);
+				int wishCount = wishBO.countWishByMovieCd(Integer.valueOf(movieCd));
+				tempMap.put("wishCount", wishCount);
+				result.add(tempMap);
+			}
 		}
 		
 		return result;
