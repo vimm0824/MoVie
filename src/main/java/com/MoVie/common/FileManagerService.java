@@ -16,8 +16,10 @@ public class FileManagerService {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	// server용
 	public static final String FILE_UPLOAD_PATH = "/home/ec2-user/images/";
-//	public static final String FILE_UPLOAD_PATH = "/Users/guyungi/Desktop/MoVie/workspace/images/";
+	// local용
+	//public static final String FILE_UPLOAD_PATH = "/Users/guyungi/Desktop/MoVie/workspace/images/";
 	
 	public String saveFile(String userLoginId, MultipartFile file) {
 		String directoryName = userLoginId + "_" + System.currentTimeMillis() + "/";

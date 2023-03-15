@@ -214,6 +214,7 @@
 				if ($('.update-box').hasClass("d-none") == true) {
 					$('.userNickname').append(nickname);
 					$('#review-userId').append(userId);
+					$('#update-review').empty();
 					$('#update-review').append(review);
 					$('.update-box').removeClass("d-none");
 				} else {

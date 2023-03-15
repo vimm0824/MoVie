@@ -21,7 +21,10 @@
 				<div class="mb-3">
 					<div class="display-4 font-weight-bold text-white">${giftCard.ticketCard.movieNm}</div>
 					<div class="text-white h4">${giftCard.ticketCard.ticket.plan}</div>
-					<div class="text-white h4">좌석 : ${giftCard.ticketCard.ticket.seat}</div>
+					<div class="d-flex justify-content-around">
+						<div class="text-white h4">좌석 : ${giftCard.ticketCard.ticket.seat}</div>
+						<div class="text-white h4">보낸 사람 : ${giftCard.userNickename}</div>
+					</div>
 				</div>
 				<div class="mb-3 ml-3 d-flex">
 					<button type="button" class="btn btn-type2 text-dark delete-btn" 
@@ -31,7 +34,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="my-ticket-message p-1">
+		<div class="my-ticket-message p-1 border border-white">
 			<h1 class="text-white">메세지</h1>
 			<div class="text-center text-white">
 				<c:choose>

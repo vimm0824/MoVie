@@ -43,13 +43,6 @@ public class GiftBO {
 		
 		List<Gift> giftList = getGiftListByReceiverId(receiverId);
 		
-		
-		/*
-		 * private Gift gift;
-			private String userNickename;
-			private String receiverNickename;
-			private TicketCard ticketCard;
-		 * */
 		for (Gift gift : giftList) {
 			GiftCard giftCard = new GiftCard();
 			giftCard.setGift(gift);
@@ -63,7 +56,7 @@ public class GiftBO {
 			
 			//보낸사람
 			User send = userBO.getUserById(ticketCard.getTicket().getUserId());
-			giftCard.setReceiverNickename(send.getNickname());
+			giftCard.setUserNickename(send.getNickname());
 			
 			result.add(giftCard);
 		}
